@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>A-Sabil — Association humanitaire</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Montserrat:wght@400;500;600;700&family=Martel+Sans:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="shared.css" />
+  <style>
+    /* ── HERO ACCUEIL ── */
+    .hero {
+      position: relative; min-height: 100vh;
+      display: flex; flex-direction: column; justify-content: center;
+      overflow: hidden; padding: 100px 0 80px;
+    }
+    .hero-bg { position: absolute; inset: 0; background: linear-gradient(135deg, #022935 0%, #0b4a62 55%, #0e5a78 100%); }
+    .hero-pattern {
+      position: absolute; inset: 0; opacity: 0.05;
+      background-image: radial-gradient(circle at 15% 50%, #57C6FF 0%, transparent 45%),
+        radial-gradient(circle at 85% 20%, #EA5600 0%, transparent 35%);
+    }
+    .hero-photo {
+      position: absolute; right: 0; top: 0; bottom: 0; width: 52%;
+      clip-path: polygon(6% 0, 100% 0, 100% 100%, 0% 100%);
+    }
+    .hero-photo-inner {
+      width: 100%; height: 100%;
+      background: repeating-linear-gradient(135deg, #0c3b52 0, #0c3b52 12px, #0f4563 12px, #0f4563 24px);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .hero-photo-label { color: rgba(87,198,255,0.3); font-family: monospace; font-size: 12px; text-align: center; padding: 20px; }
+    .hero-inner {
+      position: relative; z-index: 2; max-width: 1200px; margin: 0 auto;
+      width: 100%; padding: 0 48px;
+    }
+    .hero-badge {
+      display: inline-block; background: #EA5600; color: #fff;
+      font-size: 11px; font-weight: 700; letter-spacing: 2px;
+      padding: 5px 14px; border-radius: 20px; margin-bottom: 20px; text-transform: uppercase;
+    }
+    .hero-title {
+      font-family: 'Lilita One', cursive; font-size: clamp(44px, 5.5vw, 84px);
+      color: #fff; line-height: 1; margin-bottom: 22px; max-width: 540px;
+    }
+    .hero-title span { color: #57C6FF; }
+    .hero-desc { color: rgba(255,255,255,0.75); font-size: 17px; line-height: 1.65; max-width: 460px; margin-bottom: 36px; }
+    .hero-btns { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 56px; }
+    .hero-stats { display: flex; gap: 40px; flex-wrap: wrap; }
+    .hero-stat-num { font-family: 'Lilita One', cursive; font-size: 38px; color: #57C6FF; line-height: 1; }
+    .hero-stat-label { font-size: 12px; color: rgba(255,255,255,0.55); font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-top: 3px; }
+
+    /* SCROLL INDICATOR */
+    .scroll-indicator {
+      position: absolute; bottom: 28px; left: 50%; transform: translateX(-50%);
+      display: flex; flex-direction: column; align-items: center; gap: 8px; z-index: 2;
+      animation: bounce 2s ease-in-out infinite;
+    }
+    .scroll-indicator span { font-size: 11px; color: rgba(255,255,255,0.4); font-weight: 600; letter-spacing: 1px; }
+    @keyframes bounce { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(6px)} }
+
+    /* MANIFESTO */
+    .manifesto {
+      background: #fff; padding: 80px 48px;
+    }
+    .manifesto-inner {
+      max-width: 1200px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+    }
+    .manifesto-text h2 { font-family: 'Lilita One', cursive; font-size: clamp(30px, 4vw, 48px); color: #022935; margin-bottom: 20px; line-height: 1.1; }
+    .manifesto-text h2 span { color: #57C6FF; }
+    .manifesto-text p { font-size: 16px; line-height: 1.75; color: #4a6a75; margin-bottom: 16px; }
+    .manifesto-visual {
+      position: relative; border-radius: 24px; overflow: hidden;
+      aspect-ratio: 4/3;
+      background: repeating-linear-gradient(135deg, #cde8f2 0, #cde8f2 10px, #b8daea 10px, #b8daea 20px);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .manifesto-visual span { font-family: monospace; font-size: 12px; color: rgba(2,41,53,0.3); text-align: center; padding: 20px; }
+    .manifesto-badge {
+      position: absolute; bottom: 20px; left: 20px;
+      background: #022935; color: #fff; border-radius: 14px; padding: 14px 20px;
+    }
+    .manifesto-badge strong { font-family: 'Lilita One', cursive; font-size: 28px; color: #57C6FF; display: block; }
+    .manifesto-badge span { font-size: 12px; color: rgba(255,255,255,0.6); }
+
+    /* PROJETS GRID */
+    .projets-section { background: #f8fafb; padding: 80px 48px; }
+    .projets-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 24px; max-width: 1200px; margin: 0 auto;
+    }
+    .projet-card {
+      background: #fff; border-radius: 20px; overflow: hidden;
+      box-shadow: 0 2px 16px rgba(2,41,53,0.07);
+      transition: transform .25s, box-shadow .25s;
+      text-decoration: none; display: block;
+    }
+    .projet-card:hover { transform: translateY(-6px); box-shadow: 0 14px 42px rgba(2,41,53,0.14); }
+    .projet-card-img {
+      height: 180px; position: relative;
+      display: flex; align-items: center; justify-content: center;
+      font-family: monospace; font-size: 11px; color: rgba(2,41,53,0.3); text-align: center; padding: 20px;
+    }
+    .projet-card-img.c1 { background: repeating-linear-gradient(135deg,#cce8f4 0,#cce8f4 8px,#b8dff0 8px,#b8dff0 16px); }
+    .projet-card-img.c2 { background: repeating-linear-gradient(135deg,#d4edcc 0,#d4edcc 8px,#c3e4b8 8px,#c3e4b8 16px); }
+    .projet-card-img.c3 { background: repeating-linear-gradient(135deg,#fce8cc 0,#fce8cc 8px,#f8ddb8 8px,#f8ddb8 16px); }
+    .projet-card-img.c4 { background: repeating-linear-gradient(135deg,#e8d4f8 0,#e8d4f8 8px,#dfc4f4 8px,#dfc4f4 16px); }
+    .projet-card-img.c5 { background: repeating-linear-gradient(135deg,#f8e0cc 0,#f8e0cc 8px,#f4d0b8 8px,#f4d0b8 16px); }
+    .projet-card-img.c6 { background: repeating-linear-gradient(135deg,#d4e8f8 0,#d4e8f8 8px,#c0daf4 8px,#c0daf4 16px); }
+    .projet-card-body { padding: 20px 22px 24px; }
+    .projet-tag {
+      display: inline-block; padding: 3px 10px; border-radius: 20px;
+      font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 8px;
+    }
+    .t-blue { background: #57C6FF22; color: #0a6080; }
+    .t-green { background: #d4edcc; color: #2d6e1e; }
+    .t-orange { background: #fce8cc; color: #8a3e00; }
+    .t-purple { background: #e8d4f8; color: #5a1e8a; }
+    .t-red { background: #f8e0cc; color: #8a3e00; }
+    .t-teal { background: #d4e8f8; color: #0a4a70; }
+    .projet-card-title { font-family: 'Lilita One', cursive; font-size: 19px; color: #022935; margin-bottom: 6px; }
+    .projet-card-desc { font-size: 13px; color: #5a7a85; line-height: 1.5; }
+    .projet-card-link {
+      display: inline-flex; align-items: center; gap: 6px; margin-top: 14px;
+      font-size: 13px; font-weight: 700; color: #022935; text-decoration: none;
+      transition: color .2s;
+    }
+    .projet-card:hover .projet-card-link { color: #57C6FF; }
+
+    /* CAMPAGNE RAHMA */
+    .campagne {
+      background: #022935; padding: 80px 48px; position: relative; overflow: hidden;
+    }
+    .campagne::before {
+      content: ''; position: absolute; top: -120px; right: -80px;
+      width: 500px; height: 500px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(87,198,255,0.08) 0%, transparent 70%);
+    }
+    .campagne-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+    .campagne-text h2 { font-family: 'Lilita One', cursive; font-size: clamp(30px, 4vw, 52px); color: #fff; margin-bottom: 16px; line-height: 1.1; }
+    .campagne-text h2 span { color: #57C6FF; }
+    .campagne-text p { font-size: 15px; color: rgba(255,255,255,0.7); line-height: 1.7; margin-bottom: 14px; }
+    .campagne-highlight { background: rgba(87,198,255,0.1); border: 1px solid rgba(87,198,255,0.2); border-radius: 14px; padding: 20px 24px; margin: 20px 0; }
+    .campagne-highlight p { color: rgba(255,255,255,0.8); margin: 0; font-style: italic; }
+    .campagne-visual {
+      border-radius: 24px; overflow: hidden; aspect-ratio: 4/3;
+      background: repeating-linear-gradient(135deg, #0a3a50 0, #0a3a50 12px, #0d4460 12px, #0d4460 24px);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .campagne-visual span { font-family: monospace; font-size: 12px; color: rgba(87,198,255,0.3); text-align: center; }
+
+    /* IMPACT */
+    .impact-section { background: #fff; padding: 80px 48px; }
+    .impact-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; max-width: 1200px; margin: 0 auto; }
+    .impact-item {
+      background: #f8fafb; border-radius: 18px; padding: 28px 20px; text-align: center;
+      border: 1px solid #e8ecee; transition: transform .2s, border-color .2s;
+    }
+    .impact-item:hover { transform: translateY(-4px); border-color: #57C6FF; }
+    .impact-icon { font-size: 36px; margin-bottom: 12px; }
+    .impact-amount { font-family: 'Lilita One', cursive; font-size: 36px; color: #57C6FF; line-height: 1; margin-bottom: 4px; }
+    .impact-desc { font-size: 13px; color: #5a7a85; line-height: 1.5; }
+
+    /* CTA CENTRAL */
+    .cta-section { background: #57C6FF; padding: 72px 48px; text-align: center; }
+    .cta-title { font-family: 'Lilita One', cursive; font-size: clamp(32px, 4vw, 56px); color: #022935; margin-bottom: 16px; }
+    .cta-sub { font-size: 17px; color: rgba(2,41,53,0.75); margin-bottom: 32px; max-width: 500px; margin-left: auto; margin-right: auto; }
+    .cta-btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      .hero-inner { padding: 0 24px; }
+      .hero-photo { display: none; }
+      .manifesto-inner { grid-template-columns: 1fr; gap: 40px; }
+      .projets-grid { grid-template-columns: 1fr 1fr; }
+      .campagne-inner { grid-template-columns: 1fr; gap: 40px; }
+      .impact-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 520px) {
+      .projets-grid { grid-template-columns: 1fr; }
+      .hero-btns { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+<main>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-pattern"></div>
+    <div class="hero-photo"><div class="hero-photo-inner"><span class="hero-photo-label">photo terrain Mali</span></div></div>
+    <div class="hero-inner">
+      <span class="hero-badge">Association humanitaire · Depuis 2012</span>
+      <h1 class="hero-title">Ensemble,<br/>agissons pour<br/><span>le bien.</span></h1>
+      <p class="hero-desc">A-Sabil intervient au Mali et au Sénégal pour l'accès à l'eau potable, l'éducation et le développement durable des communautés.</p>
+      <div class="hero-btns">
+        <a href="don.html" class="btn-secondary">Faire un don</a>
+        <a href="qui-sommes-nous.html" class="btn-outline white">Qui sommes-nous ?</a>
+      </div>
+      <div class="hero-stats">
+        <div><div class="hero-stat-num">47</div><div class="hero-stat-label">Forages réalisés</div></div>
+        <div><div class="hero-stat-num">1 200+</div><div class="hero-stat-label">Arbres plantés</div></div>
+        <div><div class="hero-stat-num">320</div><div class="hero-stat-label">Enfants parrainés</div></div>
+        <div><div class="hero-stat-num">12</div><div class="hero-stat-label">Années d'action</div></div>
+      </div>
+    </div>
+    <div class="scroll-indicator">
+      <span>DÉCOUVRIR</span>
+      <svg width="18" height="10" viewBox="0 0 18 10" fill="rgba(255,255,255,0.4)"><path d="M1 1l8 8 8-8"/></svg>
+    </div>
+  </section>
+
+  <!-- MANIFESTO -->
+  <section class="manifesto">
+    <div class="manifesto-inner">
+      <div class="manifesto-text fade-up">
+        <h2>Une association au service <span>des plus vulnérables</span></h2>
+        <p>A-SABIL est une association humanitaire qui intervient sur plusieurs axes de développement auprès de populations en difficulté.</p>
+        <p>À travers les actions concrètes et pérennes que nous menons dans différents domaines — eau, éducation, alimentation, santé — les populations ont l'occasion de devenir actrices d'un changement positif au sein de leur communauté.</p>
+        <div style="display:flex;gap:14px;margin-top:28px;">
+          <a href="qui-sommes-nous.html" class="btn-primary">Nous connaître</a>
+          <a href="s-engager.html" class="btn-outline">S'engager</a>
+        </div>
+      </div>
+      <div class="manifesto-visual fade-up">
+        <span>photo équipe A-Sabil terrain</span>
+        <div class="manifesto-badge">
+          <strong>2012</strong>
+          <span>Fondée à Bagnolet</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJETS -->
+  <section class="projets-section">
+    <div class="section-header fade-up">
+      <span class="section-eyebrow">Nos projets</span>
+      <h2 class="section-title">Choisissez <span>votre cause</span></h2>
+      <p class="section-sub">Six projets concrets, un impact mesurable sur le terrain.</p>
+    </div>
+    <div class="projets-grid">
+      <a href="forage.html" class="projet-card fade-up">
+        <div class="projet-card-img c1"><span>photo forage</span></div>
+        <div class="projet-card-body">
+          <span class="projet-tag t-blue">Eau potable</span>
+          <div class="projet-card-title">Forages au Mali</div>
+          <div class="projet-card-desc">Construire des forages pour donner accès à l'eau potable à des villages entiers.</div>
+          <span class="projet-card-link">En savoir plus →</span>
+        </div>
+      </a>
+      <a href="plantation.html" class="projet-card fade-up">
+        <div class="projet-card-img c2"><span>photo plantation</span></div>
+        <div class="projet-card-body">
+          <span class="projet-tag t-green">Environnement</span>
+          <div class="projet-card-title">Plantation d'arbres</div>
+          <div class="projet-card-desc">Planter des arbres fruitiers pour nourrir des familles et lutter contre la désertification.</div>
+          <span class="projet-card-link">En savoir plus →</span>
+        </div>
+      </a>
+      <a href="ecole.html" class="projet-card fade-up">
+        <div class="projet-card-img c3"><span>photo école</span></div>
+        <div class="projet-card-body">
+          <span class="projet-tag t-orange">Éducation</span>
+          <div class="projet-card-title">École Al-Kawthar</div>
+          <div class="projet-card-desc">Parrainer un enfant à l'école Al-Kawthar pour lui offrir une éducation de qualité.</div>
+          <span class="projet-card-link">En savoir plus →</span>
+        </div>
+      </a>
+      <a href="zakat.html" class="projet-card fade-up">
+        <div class="projet-card-img c4"><span>photo zakat</span></div>
+        <div class="projet-card-body">
+          <span class="projet-tag t-purple">Purification</span>
+          <div class="projet-card-title">Zakat al-maal</div>
+          <div class="projet-card-desc">Versez votre Zakat en toute confiance, distribuée directement aux plus démunis.</div>
+          <span class="projet-card-link">En savoir plus →</span>
+        </div>
+      </a>
+      <a href="aid.html" class="projet-card fade-up">
+        <div class="projet-card-img c5"><span>photo aïd al-adha</span></div>
+        <div class="projet-card-body">
+          <span class="projet-tag t-red">Sacrifice</span>
+          <div class="projet-card-title">Aïd al-Adha</div>
+          <div class="projet-card-desc">Offrez votre sacrifice de l'Aïd à une famille dans le besoin au Mali et au Sénégal.</div>
+          <span class="projet-card-link">En savoir plus →</span>
+        </div>
+      </a>
+      <a href="omra.html" class="projet-card fade-up">
+        <div class="projet-card-img c6"><span>photo omra / mosquée</span></div>
+        <div class="projet-card-body">
+          <span class="projet-tag t-teal">Spirituel</span>
+          <div class="projet-card-title">Omra pour nécessiteux</div>
+          <div class="projet-card-desc">Offrir le voyage vers La Mecque à des personnes dans le besoin qui en ont le désir.</div>
+          <span class="projet-card-link">En savoir plus →</span>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- STAT STRIP -->
+  <div class="stat-strip">
+    <div class="stat-item fade-up"><div class="stat-num">47</div><div class="stat-label">Forages réalisés</div></div>
+    <div class="stat-item fade-up"><div class="stat-num">1 200+</div><div class="stat-label">Arbres plantés</div></div>
+    <div class="stat-item fade-up"><div class="stat-num">320</div><div class="stat-label">Enfants parrainés</div></div>
+    <div class="stat-item fade-up"><div class="stat-num">5 régions</div><div class="stat-label">Couverture au Mali</div></div>
+  </div>
+
+  <!-- CAMPAGNE RAHMA -->
+  <section class="campagne">
+    <div class="campagne-inner">
+      <div class="campagne-text fade-up">
+        <h2>Campagne <span>Rahma</span></h2>
+        <p>Votre don mensuel est un engagement durable qui nous permettra d'agir jour après jour dans tous nos projets.</p>
+        <div class="campagne-highlight">
+          <p>"Pourquoi faire un don mensuel ? Parce que chaque mois, de nouvelles familles ont besoin d'eau, d'éducation, d'alimentation. Votre fidélité est notre force."</p>
+        </div>
+        <p style="color:rgba(255,255,255,0.6);font-size:14px;">Don annulable à tout moment · Reçu fiscal annuel</p>
+        <div style="display:flex;gap:14px;margin-top:28px;flex-wrap:wrap;">
+          <a href="don.html" class="btn-secondary">Faire un don mensuel</a>
+          <a href="s-engager.html" class="btn-outline white">S'engager autrement</a>
+        </div>
+      </div>
+      <div class="campagne-visual fade-up"><span>photo campagne Rahma</span></div>
+    </div>
+  </section>
+
+  <!-- IMPACT -->
+  <section class="impact-section">
+    <div class="section-header fade-up">
+      <span class="section-eyebrow">Votre impact</span>
+      <h2 class="section-title">Chaque euro <span>compte</span></h2>
+    </div>
+    <div class="impact-grid">
+      <div class="impact-item fade-up"><div class="impact-icon">🌱</div><div class="impact-amount">10€</div><div class="impact-desc">10 semences plantées dans une pépinière</div></div>
+      <div class="impact-item fade-up"><div class="impact-icon">🌳</div><div class="impact-amount">25€</div><div class="impact-desc">1 arbre fruitier planté et entretenu</div></div>
+      <div class="impact-item fade-up"><div class="impact-icon">📚</div><div class="impact-amount">50€</div><div class="impact-desc">1 mois de scolarité pour un enfant</div></div>
+      <div class="impact-item fade-up"><div class="impact-icon">🚿</div><div class="impact-amount">1 500€</div><div class="impact-desc">1 forage complet — eau pour 500 personnes</div></div>
+    </div>
+  </section>
+
+  <!-- CTA FINAL -->
+  <section class="cta-section">
+    <div class="cta-title fade-up">Prêt à agir ?</div>
+    <p class="cta-sub fade-up">Rejoignez les centaines de donateurs qui soutiennent A-Sabil depuis 12 ans.</p>
+    <div class="cta-btns fade-up">
+      <a href="don.html" class="btn-primary">Faire un don maintenant</a>
+      <a href="contact.html" class="btn-outline">Nous contacter</a>
+    </div>
+  </section>
+</main>
+
+<script src="shared.js"></script>
+<script>injectNav('accueil'); injectFooter();</script>
+</body>
+</html>

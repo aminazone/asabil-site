@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>École Al-Kawthar — A-Sabil</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Montserrat:wght@400;500;600;700&family=Martel+Sans:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="shared.css" />
+  <style>
+    .content-layout { display: grid; grid-template-columns: 1fr 360px; gap: 60px; max-width: 1200px; margin: 0 auto; align-items: start; }
+    .sticky-don { position: sticky; top: 100px; }
+    .niveaux-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; margin: 24px 0; }
+    .niveau-card { background: #fce8cc; border-radius: 14px; padding: 20px 18px; text-align: center; }
+    .niveau-icon { font-size: 28px; margin-bottom: 8px; }
+    .niveau-title { font-family: 'Lilita One', cursive; font-size: 16px; color: #022935; }
+    .niveau-desc { font-size: 12px; color: #8a5a30; margin-top: 5px; line-height: 1.4; }
+    .parrainage-card {
+      background: linear-gradient(135deg,#022935,#0a4a60);
+      border-radius: 20px; padding: 32px 28px; color: #fff; margin: 28px 0;
+    }
+    .parrainage-amount { font-family: 'Lilita One', cursive; font-size: 56px; color: #57C6FF; line-height: 1; }
+    .parrainage-period { font-size: 14px; color: rgba(255,255,255,0.6); margin-bottom: 16px; }
+    .parrainage-includes { display: flex; flex-direction: column; gap: 8px; margin-top: 16px; }
+    .parrainage-include-item { display: flex; align-items: center; gap: 10px; font-size: 14px; color: rgba(255,255,255,0.8); }
+    .check-blue { color: #57C6FF; font-weight: 700; }
+    @media(max-width:900px){ .content-layout{grid-template-columns:1fr;} .sticky-don{position:static;} .niveaux-grid{grid-template-columns:repeat(2,1fr);} }
+  </style>
+</head>
+<body>
+  <section class="page-hero">
+    <div class="page-hero-bg" style="background:linear-gradient(160deg,#3d2200 0%,#8a4400 60%,#EA560022 100%);"></div>
+    <div class="page-hero-placeholder" style="background:repeating-linear-gradient(135deg,#3d2200 0,#3d2200 12px,#4a2900 12px,#4a2900 24px);"></div>
+    <div class="page-hero-overlay"></div>
+    <div class="page-hero-content">
+      <span class="page-hero-eyebrow">Éducation</span>
+      <h1 class="page-hero-title">École<br/><span>Al-Kawthar</span></h1>
+      <p class="page-hero-sub">Parrainez un enfant et offrez-lui une éducation de qualité au Mali. Un geste durable qui changera son avenir.</p>
+      <a href="don.html?projet=ecole" class="page-hero-cta orange">Parrainer un enfant →</a>
+    </div>
+  </section>
+
+  <div class="stat-strip">
+    <div class="stat-item fade-up"><div class="stat-num">320</div><div class="stat-label">Enfants parrainés</div></div>
+    <div class="stat-item fade-up"><div class="stat-num">50€</div><div class="stat-label">Par mois / enfant</div></div>
+    <div class="stat-item fade-up"><div class="stat-num">Bamako</div><div class="stat-label">Mali</div></div>
+    <div class="stat-item fade-up"><div class="stat-num">3</div><div class="stat-label">Niveaux scolaires</div></div>
+  </div>
+
+  <section class="section section-white">
+    <div class="content-layout">
+      <div>
+        <div class="fade-up">
+          <span class="section-eyebrow">Parrainer</span>
+          <h2 class="section-title" style="margin-bottom:20px;">L'école<br/><span>Al-Kawthar</span></h2>
+          <div class="prose">
+            <p>L'école Al-Kawthar est une école islamique fondée à Bamako, au Mali. Elle accueille des enfants de familles défavorisées et leur offre une éducation générale et religieuse de qualité.</p>
+            <p>En parrainant un enfant, vous couvrez ses <strong>frais de scolarité, ses fournitures scolaires et son alimentation</strong> pendant les cours. C'est un engagement mensuel simple, mais profondément transformateur.</p>
+          </div>
+        </div>
+
+        <div class="parrainage-card fade-up">
+          <div style="font-size:13px;text-transform:uppercase;letter-spacing:1.5px;color:rgba(255,255,255,0.5);margin-bottom:8px;">Parrainage mensuel</div>
+          <div class="parrainage-amount">50€</div>
+          <div class="parrainage-period">/mois · annulable à tout moment</div>
+          <div class="parrainage-includes">
+            <div class="parrainage-include-item"><span class="check-blue">✓</span> Frais de scolarité couverts</div>
+            <div class="parrainage-include-item"><span class="check-blue">✓</span> Fournitures scolaires incluses</div>
+            <div class="parrainage-include-item"><span class="check-blue">✓</span> Repas pendant les cours</div>
+            <div class="parrainage-include-item"><span class="check-blue">✓</span> Suivi du progrès de l'enfant</div>
+            <div class="parrainage-include-item"><span class="check-blue">✓</span> Reçu fiscal annuel</div>
+          </div>
+        </div>
+
+        <div class="fade-up">
+          <h3 style="font-family:'Lilita One',cursive;font-size:22px;color:#022935;margin-bottom:16px;">Les niveaux</h3>
+          <div class="niveaux-grid">
+            <div class="niveau-card">
+              <div class="niveau-icon">🌱</div>
+              <div class="niveau-title">Maternelle</div>
+              <div class="niveau-desc">Éveil, apprentissage de l'arabe et du français</div>
+            </div>
+            <div class="niveau-card">
+              <div class="niveau-icon">📖</div>
+              <div class="niveau-title">Primaire</div>
+              <div class="niveau-desc">Programme national + enseignement islamique</div>
+            </div>
+            <div class="niveau-card">
+              <div class="niveau-icon">🎓</div>
+              <div class="niveau-title">Secondaire</div>
+              <div class="niveau-desc">Préparation au brevet + mémorisation du Coran</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="quote-block fade-up">
+          <div class="quote-text">"Grâce au parrainage d'A-Sabil, ma fille a pu passer son brevet cette année. Elle veut devenir infirmière. Je n'aurais jamais pu payer seule."</div>
+          <div class="quote-source">Fatou, mère de Mariama — Bamako, Mali</div>
+        </div>
+
+        <div style="background:#fce8cc;border-radius:14px;padding:20px 24px;margin-top:20px;" class="fade-up">
+          <p style="font-size:14px;color:#8a4400;line-height:1.7;">
+            <strong>Comment fonctionne le parrainage ?</strong><br/>
+            Votre don mensuel de 50€ est directement versé à l'école pour couvrir les frais d'un enfant. Vous recevrez chaque année un bilan de l'école et des nouvelles de votre filleul(e).
+          </p>
+        </div>
+      </div>
+
+      <div class="sticky-don fade-up">
+        <div class="don-inline" style="background:#3d2200;">
+          <div class="don-inline-title">📚 Parrainer</div>
+          <div class="don-inline-sub">Un engagement mensuel qui change une vie.</div>
+          <div style="margin-bottom:16px;">
+            <div style="display:flex;gap:0;background:rgba(255,255,255,0.1);border-radius:30px;padding:3px;margin-bottom:18px;">
+              <button id="tabU" onclick="setTab('unique')" style="flex:1;padding:9px 0;border-radius:26px;border:none;font-weight:700;font-size:12px;cursor:pointer;background:#57C6FF;color:#022935;font-family:'Montserrat',sans-serif;transition:all .2s;">Don unique</button>
+              <button id="tabM" onclick="setTab('mensuel')" style="flex:1;padding:9px 0;border-radius:26px;border:none;font-weight:700;font-size:12px;cursor:pointer;background:transparent;color:#fff;font-family:'Montserrat',sans-serif;transition:all .2s;">Don mensuel</button>
+            </div>
+          </div>
+          <div class="don-amounts-row">
+            <button class="don-pill" onclick="setDon(this,25)">25€</button>
+            <button class="don-pill active" onclick="setDon(this,50)">50€</button>
+            <button class="don-pill" onclick="setDon(this,100)">100€</button>
+            <button class="don-pill" onclick="setDon(this,200)">200€</button>
+            <button class="don-pill libre" onclick="setDon(this,'libre')">Libre</button>
+          </div>
+          <div id="impactHint" style="font-size:13px;color:#57C6FF;min-height:20px;margin-bottom:12px;">✦ 1 mois de scolarité pour un enfant</div>
+          <div class="don-cta-row">
+            <button class="btn-don-main" style="background:#EA5600;" onclick="window.location.href='don.html?projet=ecole'">Parrainer maintenant →</button>
+          </div>
+          <div style="text-align:center;font-size:11px;color:rgba(255,255,255,0.4);margin-top:12px;">🔒 Paiement sécurisé · Reçu fiscal</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script src="shared.js"></script>
+  <script>
+    injectNav('ecole'); injectFooter();
+    function setDon(btn,val){
+      document.querySelectorAll('.don-pill').forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active');
+      const h={25:'50% d\'un mois de scolarité',50:'1 mois de scolarité',100:'2 mois pour un enfant',200:'4 mois pour un enfant'};
+      document.getElementById('impactHint').textContent=h[val]?'✦ '+h[val]:'✦ Montant libre — merci !';
+    }
+    function setTab(t){
+      document.getElementById('tabU').style.background=t==='unique'?'#57C6FF':'transparent';
+      document.getElementById('tabU').style.color=t==='unique'?'#022935':'#fff';
+      document.getElementById('tabM').style.background=t==='mensuel'?'#57C6FF':'transparent';
+      document.getElementById('tabM').style.color=t==='mensuel'?'#022935':'#fff';
+    }
+  </script>
+</body>
+</html>

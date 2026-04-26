@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Forages au Mali — A-Sabil</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Montserrat:wght@400;500;600;700&family=Martel+Sans:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="shared.css" />
+  <style>
+    .content-layout { display: grid; grid-template-columns: 1fr 360px; gap: 60px; max-width: 1200px; margin: 0 auto; align-items: start; }
+    .forages-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 20px; margin: 32px 0; }
+    .forage-card { background: #f8fafb; border-radius: 16px; overflow: hidden; border: 1px solid #e8ecee; }
+    .forage-card-img {
+      height: 160px;
+      background: repeating-linear-gradient(135deg, #cce8f4 0, #cce8f4 10px, #b8dff0 10px, #b8dff0 20px);
+      display: flex; align-items: center; justify-content: center;
+      font-family: monospace; font-size: 11px; color: rgba(2,41,53,0.35); text-align: center;
+    }
+    .forage-card-body { padding: 16px 18px; }
+    .forage-card-date { font-size: 11px; color: #EA5600; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+    .forage-card-name { font-family: 'Lilita One', cursive; font-size: 17px; color: #022935; }
+    .forage-card-region { font-size: 12px; color: #5a7a85; margin-top: 4px; }
+    .regions-list { display: flex; flex-wrap: wrap; gap: 10px; margin: 16px 0 28px; }
+    .region-badge { padding: 6px 14px; background: #57C6FF22; color: #0a5070; border-radius: 20px; font-size: 13px; font-weight: 600; }
+    .sticky-don { position: sticky; top: 100px; }
+    @media(max-width:900px){ .content-layout{grid-template-columns:1fr;} .sticky-don{position:static;} .forages-grid{grid-template-columns:1fr;} }
+  </style>
+</head>
+<body>
+  <section class="page-hero">
+    <div class="page-hero-bg"></div>
+    <div class="page-hero-placeholder"></div>
+    <div class="page-hero-overlay"></div>
+    <div class="page-hero-content">
+      <span class="page-hero-eyebrow">Eau potable</span>
+      <h1 class="page-hero-title">Forages<br/>au <span>Mali</span></h1>
+      <p class="page-hero-sub">Construire des forages pour donner accès à l'eau potable à des villages entiers, dans 5 régions du Mali.</p>
+      <a href="don.html?projet=forage" class="page-hero-cta">Participer à la construction →</a>
+    </div>
+  </section>
+
+  <div class="stat-strip">
+    <div class="stat-item fade-up"><div class="stat-num">47</div><div class="stat-label">Forages réalisés</div></div>
+    <div class="stat-item fade-up"><div class="stat-num">5</div><div class="stat-label">Régions couvertes</div></div>
+    <div class="stat-item fade-up"><div class="stat-num">~500</div><div class="stat-label">Personnes par forage</div></div>
+    <div class="stat-item fade-up"><div class="stat-num">1 500€</div><div class="stat-label">Coût d'un forage</div></div>
+  </div>
+
+  <section class="section section-white">
+    <div class="content-layout">
+      <div>
+        <div class="fade-up">
+          <span class="section-eyebrow">Le projet</span>
+          <h2 class="section-title" style="margin-bottom:20px;">Les forages<br/>chez <span>A-Sabil</span></h2>
+          <div class="prose">
+            <p>En collaboration avec l'équipe au Mali et notre partenaire technique, A-Sabil a dressé une liste de villages privés d'accès à l'eau potable.</p>
+            <p>Ces villages sont situés dans <strong>5 des 9 régions du Mali</strong> : Kayes, Koulikoro, Ségou, Sikasso et Bamako.</p>
+            <p>Les villages sont systématiquement visités par les membres d'A-Sabil avant de réaliser un forage, afin de s'assurer des besoins réels en eau potable et de la viabilité du projet.</p>
+          </div>
+        </div>
+
+        <div class="fade-up" style="margin-top:36px;">
+          <h3 style="font-family:'Lilita One',cursive;font-size:22px;color:#022935;margin-bottom:14px;">Régions d'intervention</h3>
+          <div class="regions-list">
+            <span class="region-badge">💧 Kayes</span>
+            <span class="region-badge">💧 Koulikoro</span>
+            <span class="region-badge">💧 Ségou</span>
+            <span class="region-badge">💧 Sikasso</span>
+            <span class="region-badge">💧 Bamako</span>
+          </div>
+        </div>
+
+        <div class="quote-block fade-up">
+          <div class="quote-text">"Avant ce forage, nos femmes marchaient 8 km chaque jour pour trouver de l'eau. Aujourd'hui, le village entier s'approvisionne à 200 mètres de chez nous."</div>
+          <div class="quote-source">Chef du village de Mukadjanbougou, Ségou — Mali</div>
+        </div>
+
+        <div class="fade-up">
+          <h3 style="font-family:'Lilita One',cursive;font-size:22px;color:#022935;margin-bottom:20px;">Nos forages effectués</h3>
+          <div class="forages-grid">
+            <div class="forage-card fade-up">
+              <div class="forage-card-img"><span>photo forage Mukadjanbougou</span></div>
+              <div class="forage-card-body">
+                <div class="forage-card-date">Avril 2025</div>
+                <div class="forage-card-name">Mukadjanbougou</div>
+                <div class="forage-card-region">Région de Ségou, Mali</div>
+              </div>
+            </div>
+            <div class="forage-card fade-up">
+              <div class="forage-card-img"><span>photo forage Bamako</span></div>
+              <div class="forage-card-body">
+                <div class="forage-card-date">Janvier 2025</div>
+                <div class="forage-card-name">Dialakoroba</div>
+                <div class="forage-card-region">Région de Koulikoro, Mali</div>
+              </div>
+            </div>
+            <div class="forage-card fade-up">
+              <div class="forage-card-img"><span>photo forage Kayes</span></div>
+              <div class="forage-card-body">
+                <div class="forage-card-date">Octobre 2024</div>
+                <div class="forage-card-name">Kéniéba</div>
+                <div class="forage-card-region">Région de Kayes, Mali</div>
+              </div>
+            </div>
+            <div class="forage-card fade-up">
+              <div class="forage-card-img"><span>photo forage Sikasso</span></div>
+              <div class="forage-card-body">
+                <div class="forage-card-date">Juillet 2024</div>
+                <div class="forage-card-name">Niéna</div>
+                <div class="forage-card-region">Région de Sikasso, Mali</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- DON WIDGET -->
+      <div class="sticky-don fade-up">
+        <div class="don-inline">
+          <div class="don-inline-title">💧 Participer</div>
+          <div class="don-inline-sub">Chaque contribution finance un forage qui changera des vies.</div>
+          <div class="don-amounts-row">
+            <button class="don-pill" onclick="setDon(this,50)">50€</button>
+            <button class="don-pill active" onclick="setDon(this,100)">100€</button>
+            <button class="don-pill" onclick="setDon(this,200)">200€</button>
+            <button class="don-pill" onclick="setDon(this,500)">500€</button>
+            <button class="don-pill" onclick="setDon(this,1500)">1 500€</button>
+            <button class="don-pill libre" onclick="setDon(this,'libre')">Libre</button>
+          </div>
+          <div id="impactHint" style="font-size:13px;color:#57C6FF;min-height:20px;margin-bottom:12px;">✦ 13% d'un forage financé</div>
+          <div class="don-cta-row">
+            <button class="btn-don-main" onclick="window.location.href='don.html?projet=forage'">Je participe →</button>
+          </div>
+          <div style="text-align:center;font-size:11px;color:rgba(255,255,255,0.4);margin-top:12px;">🔒 Paiement sécurisé · Reçu fiscal</div>
+        </div>
+        <div style="background:#f8fafb;border-radius:16px;padding:20px 22px;margin-top:16px;border:1px solid #e8ecee;">
+          <div style="font-weight:700;font-size:13px;color:#022935;margin-bottom:10px;text-transform:uppercase;letter-spacing:1px;">Forage en cours</div>
+          <div style="font-size:14px;color:#022935;margin-bottom:8px;">Mukadjanbougou — Ségou</div>
+          <div style="background:#e8ecee;border-radius:30px;height:8px;overflow:hidden;">
+            <div style="width:67%;height:100%;background:linear-gradient(90deg,#57C6FF,#022935);border-radius:30px;"></div>
+          </div>
+          <div style="display:flex;justify-content:space-between;font-size:11px;color:#999;margin-top:5px;">
+            <span>0€</span><span style="color:#EA5600;font-weight:700;">67%</span><span>1 500€</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script src="shared.js"></script>
+  <script>
+    injectNav('forage'); injectFooter();
+    function setDon(btn, val) {
+      document.querySelectorAll('.don-pill').forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active');
+      const hints = {50:'3% d\'un forage financé',100:'7% d\'un forage',200:'13% d\'un forage',500:'33% d\'un forage',1500:'1 forage complet !'};
+      document.getElementById('impactHint').textContent = hints[val] ? '✦ '+hints[val] : '✦ Montant libre';
+    }
+  </script>
+</body>
+</html>

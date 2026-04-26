@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Plantation d'arbres — A-Sabil</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Montserrat:wght@400;500;600;700&family=Martel+Sans:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="shared.css" />
+  <style>
+    .content-layout { display: grid; grid-template-columns: 1fr 360px; gap: 60px; max-width: 1200px; margin: 0 auto; align-items: start; }
+    .sticky-don { position: sticky; top: 100px; }
+    .arbres-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 12px; margin: 24px 0; }
+    .arbre-chip { background: #d4edcc; border-radius: 12px; padding: 14px 12px; text-align: center; }
+    .arbre-nom { font-weight: 700; font-size: 13px; color: #2d6e1e; }
+    .arbre-latin { font-size: 11px; color: #5a8a50; font-style: italic; margin-top: 3px; }
+    .photo-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; margin: 28px 0; }
+    .photo-placeholder {
+      aspect-ratio: 4/3; border-radius: 14px; overflow: hidden;
+      background: repeating-linear-gradient(135deg,#d4edcc 0,#d4edcc 10px,#c3e4b8 10px,#c3e4b8 20px);
+      display: flex; align-items: center; justify-content: center;
+      font-family: monospace; font-size: 11px; color: rgba(2,41,53,0.3); text-align: center; padding: 10px;
+    }
+    @media(max-width:900px){ .content-layout{grid-template-columns:1fr;} .sticky-don{position:static;} .arbres-grid{grid-template-columns:repeat(2,1fr);} .photo-grid{grid-template-columns:repeat(2,1fr);} }
+    @media(max-width:520px){ .arbres-grid{grid-template-columns:repeat(2,1fr);} }
+  </style>
+</head>
+<body>
+  <section class="page-hero" style="--hero-color:#2d6e1e;">
+    <div class="page-hero-bg" style="background:linear-gradient(160deg,#1a3f1a 0%,#2d6e1e88 60%,#57C6FF22 100%);"></div>
+    <div class="page-hero-placeholder" style="background:repeating-linear-gradient(135deg,#1a3f22 0,#1a3f22 12px,#1f4a28 12px,#1f4a28 24px);"></div>
+    <div class="page-hero-overlay"></div>
+    <div class="page-hero-content">
+      <span class="page-hero-eyebrow">Environnement</span>
+      <h1 class="page-hero-title">Plantation<br/>d'<span>arbres fruitiers</span></h1>
+      <p class="page-hero-sub">Planter des arbres fruitiers pour nourrir des familles, générer des revenus durables et lutter contre la désertification au Sahel.</p>
+      <a href="don.html?projet=plantation" class="page-hero-cta" style="background:#4caf50;color:#fff;">Planter un arbre →</a>
+    </div>
+  </section>
+
+  <div class="stat-strip">
+    <div class="stat-item fade-up"><div class="stat-num">1 200+</div><div class="stat-label">Arbres plantés</div></div>
+    <div class="stat-item fade-up"><div class="stat-num">7</div><div class="stat-label">Espèces cultivées</div></div>
+    <div class="stat-item fade-up"><div class="stat-num">Mali &amp; Sénégal</div><div class="stat-label">Pays d'intervention</div></div>
+    <div class="stat-item fade-up"><div class="stat-num">Permanent</div><div class="stat-label">Campagne en cours</div></div>
+  </div>
+
+  <section class="section section-white">
+    <div class="content-layout">
+      <div>
+        <div class="fade-up">
+          <span class="section-eyebrow">Le projet</span>
+          <h2 class="section-title" style="margin-bottom:20px;">Les plantations<br/>chez <span>A-Sabil</span></h2>
+          <div class="prose">
+            <p>En plus de participer à la lutte contre la désertification — phénomène qui touche la plupart des pays du Sahel — la plantation d'arbres fruitiers permet à des villages en Afrique de <strong>générer des revenus sur le long terme</strong> grâce à la revente des fruits sur les marchés locaux.</p>
+            <p>A-Sabil vous propose à travers cette campagne permanente de planter des arbres fruitiers dans les différents villages dans lesquels nous intervenons (Mali & Sénégal). Mangues, papayes, goyaves, oranges... le climat ouest-africain permet la culture d'une grande variété de fruits !</p>
+            <p>Nous accordons une attention particulière à l'entretien des arbres. Ces derniers sont <strong>plantés à proximité d'un forage</strong> et nous nous assurons qu'ils seront bien entretenus par une ou plusieurs personnes.</p>
+          </div>
+        </div>
+
+        <div class="quote-block fade-up">
+          <div class="quote-text">"Tout musulman qui plante un arbre duquel mange un être humain, une bête ou un oiseau, se verra compter une bonne action pour cela au Jour de la résurrection."</div>
+          <div class="quote-source">Muslim — Hadith du Prophète ﷺ</div>
+        </div>
+
+        <div class="fade-up">
+          <h3 style="font-family:'Lilita One',cursive;font-size:22px;color:#022935;margin-bottom:16px;">Espèces plantées</h3>
+          <div class="arbres-grid">
+            <div class="arbre-chip"><div class="arbre-nom">Manguier</div><div class="arbre-latin">Mangifera indica</div></div>
+            <div class="arbre-chip"><div class="arbre-nom">Papayer</div><div class="arbre-latin">Carica papaya</div></div>
+            <div class="arbre-chip"><div class="arbre-nom">Goyavier</div><div class="arbre-latin">Psidium guajava</div></div>
+            <div class="arbre-chip"><div class="arbre-nom">Citronnier</div><div class="arbre-latin">Citrus limon</div></div>
+            <div class="arbre-chip"><div class="arbre-nom">Moringa</div><div class="arbre-latin">Moringa oleifera</div></div>
+            <div class="arbre-chip"><div class="arbre-nom">Olivier</div><div class="arbre-latin">Olea europaea</div></div>
+            <div class="arbre-chip"><div class="arbre-nom">Igname</div><div class="arbre-latin">Dioscorea sp</div></div>
+            <div class="arbre-chip"><div class="arbre-nom">Pastèque</div><div class="arbre-latin">Citrullus lanatus</div></div>
+          </div>
+        </div>
+
+        <div class="fade-up">
+          <div style="background:#f0f8ec;border-radius:14px;padding:20px 24px;margin:20px 0;border:1px solid #c3e4b8;">
+            <p style="font-size:14px;color:#2d6e1e;line-height:1.7;">
+              <strong>À noter :</strong> nous ne fixons plus de tarif unique pour les arbres car nous nous laissons la possibilité d'adapter les espèces ainsi que leur taille en fonction du contexte de chaque village.<br/><br/>
+              <strong>Peu importe le montant de votre don, vous participez à la plantation d'arbres 🙂</strong>
+            </p>
+          </div>
+        </div>
+
+        <div class="fade-up">
+          <h3 style="font-family:'Lilita One',cursive;font-size:22px;color:#022935;margin-bottom:16px;">Sur le terrain</h3>
+          <div class="photo-grid">
+            <div class="photo-placeholder"><span>plantation arbres Mali</span></div>
+            <div class="photo-placeholder"><span>équipe terrain</span></div>
+            <div class="photo-placeholder"><span>arbres fruitiers en fleur</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sticky-don fade-up">
+        <div class="don-inline" style="background:#1a3f1a;">
+          <div class="don-inline-title">🌳 Planter un arbre</div>
+          <div class="don-inline-sub">Peu importe le montant, vous participez à planter des arbres.</div>
+          <div class="don-amounts-row">
+            <button class="don-pill" onclick="setDon(this,10)">10€</button>
+            <button class="don-pill active" onclick="setDon(this,25)">25€</button>
+            <button class="don-pill" onclick="setDon(this,50)">50€</button>
+            <button class="don-pill" onclick="setDon(this,100)">100€</button>
+            <button class="don-pill libre" onclick="setDon(this,'libre')">Libre</button>
+          </div>
+          <div id="impactHint" style="font-size:13px;color:#57C6FF;min-height:20px;margin-bottom:12px;">✦ 1 arbre fruitier planté</div>
+          <div class="don-cta-row">
+            <button class="btn-don-main" style="background:#4caf50;" onclick="window.location.href='don.html?projet=plantation'">Je plante un arbre →</button>
+          </div>
+          <div style="text-align:center;font-size:11px;color:rgba(255,255,255,0.4);margin-top:12px;">🔒 Paiement sécurisé · Reçu fiscal</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script src="shared.js"></script>
+  <script>
+    injectNav('plantation'); injectFooter();
+    function setDon(btn,val){
+      document.querySelectorAll('.don-pill').forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active');
+      const h={10:'10 semences plantées',25:'1 arbre fruitier planté',50:'2 arbres plantés',100:'4 arbres plantés'};
+      document.getElementById('impactHint').textContent=h[val]?'✦ '+h[val]:'✦ Montant libre — merci !';
+    }
+  </script>
+</body>
+</html>

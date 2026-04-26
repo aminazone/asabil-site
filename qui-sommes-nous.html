@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Qui sommes-nous — A-Sabil</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Montserrat:wght@400;500;600;700&family=Martel+Sans:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="shared.css" />
+  <style>
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; max-width: 1200px; margin: 0 auto; }
+    .about-visual { border-radius: 24px; overflow: hidden; aspect-ratio: 4/3; background: repeating-linear-gradient(135deg,#cde8f2 0,#cde8f2 10px,#b8daea 10px,#b8daea 20px); display: flex; align-items: center; justify-content: center; }
+    .about-visual span { font-family: monospace; font-size: 12px; color: rgba(2,41,53,0.3); text-align: center; padding: 20px; }
+    .valeurs-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; max-width: 1200px; margin: 0 auto; }
+    .valeur-card { background: #fff; border-radius: 20px; padding: 28px 24px; border: 1px solid #e8ecee; box-shadow: 0 2px 14px rgba(2,41,53,0.05); text-align: center; }
+    .valeur-icon { font-size: 40px; margin-bottom: 14px; }
+    .valeur-title { font-family: 'Lilita One', cursive; font-size: 20px; color: #022935; margin-bottom: 8px; }
+    .valeur-desc { font-size: 14px; color: #5a7a85; line-height: 1.6; }
+    .objectifs-list { display: flex; flex-direction: column; gap: 16px; max-width: 780px; margin: 0 auto; }
+    .objectif-item { display: flex; gap: 16px; align-items: flex-start; background: #f8fafb; border-radius: 14px; padding: 20px 22px; border: 1px solid #e8ecee; }
+    .objectif-num { width: 36px; height: 36px; border-radius: 50%; background: #57C6FF; color: #022935; font-family: 'Lilita One', cursive; font-size: 16px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .objectif-text { flex: 1; }
+    .objectif-title { font-weight: 700; font-size: 15px; color: #022935; margin-bottom: 4px; }
+    .objectif-desc { font-size: 13px; color: #5a7a85; line-height: 1.5; }
+    .team-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 20px; max-width: 1200px; margin: 0 auto; }
+    .team-card { background: #fff; border-radius: 18px; overflow: hidden; box-shadow: 0 2px 14px rgba(2,41,53,0.07); text-align: center; }
+    .team-photo { height: 140px; background: repeating-linear-gradient(135deg,#e0eef4 0,#e0eef4 8px,#cce4ee 8px,#cce4ee 16px); }
+    .team-body { padding: 16px; }
+    .team-name { font-family: 'Lilita One', cursive; font-size: 16px; color: #022935; }
+    .team-role { font-size: 12px; color: #EA5600; font-weight: 700; margin-top: 3px; }
+    .mali-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; max-width: 1200px; margin: 0 auto; }
+    @media(max-width:900px){ .about-grid,.mali-layout{grid-template-columns:1fr;gap:32px;} .valeurs-grid{grid-template-columns:1fr 1fr;} .team-grid{grid-template-columns:1fr 1fr;} }
+    @media(max-width:520px){ .valeurs-grid,.team-grid{grid-template-columns:1fr;} }
+  </style>
+</head>
+<body>
+  <section class="page-hero">
+    <div class="page-hero-bg"></div>
+    <div class="page-hero-placeholder"></div>
+    <div class="page-hero-overlay"></div>
+    <div class="page-hero-content">
+      <span class="page-hero-eyebrow">L'association</span>
+      <h1 class="page-hero-title">Qui sommes-<span>nous ?</span></h1>
+      <p class="page-hero-sub">A-Sabil est une association humanitaire fondée en 2012 à Bagnolet, qui intervient au Mali et au Sénégal pour le développement durable des communautés vulnérables.</p>
+    </div>
+  </section>
+
+  <!-- QUI SOMMES-NOUS -->
+  <section class="section section-white">
+    <div class="about-grid">
+      <div class="fade-up">
+        <span class="section-eyebrow">Notre histoire</span>
+        <h2 class="section-title" style="margin-bottom:20px;">A-SABIL,<br/><span>12 ans d'action</span></h2>
+        <div class="prose">
+          <p>A-SABIL est une association humanitaire qui intervient sur plusieurs axes de développement auprès de populations en difficulté.</p>
+          <p>À travers les actions concrètes et pérennes que nous menons dans différents domaines — éducation, formation, forages, santé — les populations ont l'occasion de devenir acteurs d'un changement positif au sein de leur communauté.</p>
+          <p>Fondée par des bénévoles engagés de la région parisienne, A-Sabil s'est développée grâce à la confiance de milliers de donateurs qui partagent notre vision d'un monde plus juste.</p>
+        </div>
+        <div style="display:flex;gap:12px;margin-top:28px;flex-wrap:wrap;">
+          <a href="don.html" class="btn-secondary">Nous soutenir</a>
+          <a href="contact.html" class="btn-outline">Nous contacter</a>
+        </div>
+      </div>
+      <div class="about-visual fade-up"><span>photo équipe A-Sabil France</span></div>
+    </div>
+  </section>
+
+  <!-- VALEURS -->
+  <section class="section section-light" id="objectifs">
+    <div class="section-header fade-up">
+      <span class="section-eyebrow">Ce qui nous guide</span>
+      <h2 class="section-title">Nos <span>valeurs</span></h2>
+    </div>
+    <div class="valeurs-grid">
+      <div class="valeur-card fade-up"><div class="valeur-icon">🤝</div><div class="valeur-title">Solidarité</div><div class="valeur-desc">Agir ensemble pour les plus vulnérables, sans distinction de religion ni d'origine.</div></div>
+      <div class="valeur-card fade-up"><div class="valeur-icon">🔍</div><div class="valeur-title">Transparence</div><div class="valeur-desc">Chaque euro de don est tracé et affecté au projet choisi. Comptes publiés annuellement.</div></div>
+      <div class="valeur-card fade-up"><div class="valeur-icon">🌱</div><div class="valeur-title">Durabilité</div><div class="valeur-desc">Des projets conçus pour durer — l'arbre qu'on plante aujourd'hui nourrira demain.</div></div>
+      <div class="valeur-card fade-up"><div class="valeur-icon">🏘️</div><div class="valeur-title">Proximité</div><div class="valeur-desc">Nos équipes sont sur le terrain. Nous connaissons les villages et leurs besoins réels.</div></div>
+      <div class="valeur-card fade-up"><div class="valeur-icon">📈</div><div class="valeur-title">Impact mesurable</div><div class="valeur-desc">Chaque action est documentée avec photos, chiffres et témoignages partagés avec nos donateurs.</div></div>
+      <div class="valeur-card fade-up"><div class="valeur-icon">🤲</div><div class="valeur-title">Foi & Action</div><div class="valeur-desc">Inspirés par les valeurs islamiques de charité, nous agissons avec humilité et dévotion.</div></div>
+    </div>
+  </section>
+
+  <!-- OBJECTIFS -->
+  <section class="section section-white">
+    <div class="section-header fade-up">
+      <span class="section-eyebrow">Notre mission</span>
+      <h2 class="section-title">Nos <span>objectifs</span></h2>
+    </div>
+    <div class="objectifs-list">
+      <div class="objectif-item fade-up"><div class="objectif-num">1</div><div class="objectif-text"><div class="objectif-title">Accès à l'eau potable</div><div class="objectif-desc">Construire des forages dans les villages privés d'eau potable pour améliorer la santé et la qualité de vie des habitants.</div></div></div>
+      <div class="objectif-item fade-up"><div class="objectif-num">2</div><div class="objectif-text"><div class="objectif-title">Éducation et formation</div><div class="objectif-desc">Financer la scolarisation des enfants défavorisés et soutenir les structures éducatives locales.</div></div></div>
+      <div class="objectif-item fade-up"><div class="objectif-num">3</div><div class="objectif-text"><div class="objectif-title">Sécurité alimentaire</div><div class="objectif-desc">Planter des arbres fruitiers et soutenir les projets agricoles pour générer des revenus durables dans les villages.</div></div></div>
+      <div class="objectif-item fade-up"><div class="objectif-num">4</div><div class="objectif-text"><div class="objectif-title">Développement communautaire</div><div class="objectif-desc">Accompagner les communautés dans leur autonomisation pour qu'elles deviennent actrices de leur propre développement.</div></div></div>
+    </div>
+  </section>
+
+  <!-- A-SABIL MALI -->
+  <section class="section section-dark" id="mali">
+    <div class="mali-layout">
+      <div class="fade-up">
+        <span class="section-eyebrow blue">Notre antenne locale</span>
+        <h2 class="section-title white" style="margin-bottom:20px;">A-Sabil <span>Mali</span></h2>
+        <div class="prose" style="color:rgba(255,255,255,0.75);">
+          <p>A-Sabil Mali est notre antenne locale basée à Bamako. Elle coordonne toutes les opérations sur le terrain : sélection des villages, supervision des forages, suivi des plantations et distribution des aides.</p>
+          <p>Notre équipe malienne est composée de bénévoles et de professionnels engagés qui partagent notre vision. Ils sont les yeux et les bras d'A-Sabil sur le terrain.</p>
+        </div>
+        <div style="margin-top:24px;background:rgba(87,198,255,0.08);border:1px solid rgba(87,198,255,0.2);border-radius:14px;padding:18px 22px;">
+          <div style="font-size:14px;color:rgba(255,255,255,0.7);line-height:1.8;">
+            <strong style="color:#57C6FF;">A-Sabil Mali</strong><br/>
+            Daoudabougou, rue 133<br/>Bamako, Mali
+          </div>
+        </div>
+      </div>
+      <div style="border-radius:24px;overflow:hidden;aspect-ratio:4/3;background:repeating-linear-gradient(135deg,#0a3a50 0,#0a3a50 12px,#0d4460 12px,#0d4460 24px);display:flex;align-items:center;justify-content:center;" class="fade-up">
+        <span style="font-family:monospace;font-size:12px;color:rgba(87,198,255,0.3);text-align:center;padding:20px;">photo équipe A-Sabil Mali</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section" style="background:#57C6FF;padding:72px 48px;text-align:center;">
+    <div style="font-family:'Lilita One',cursive;font-size:clamp(30px,4vw,52px);color:#022935;margin-bottom:14px;" class="fade-up">Rejoignez notre mission</div>
+    <p style="font-size:16px;color:rgba(2,41,53,0.75);margin-bottom:28px;max-width:480px;margin-left:auto;margin-right:auto;" class="fade-up">Donateur, bénévole, partenaire — il y a une place pour chacun dans l'aventure A-Sabil.</p>
+    <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;" class="fade-up">
+      <a href="don.html" class="btn-primary">Faire un don</a>
+      <a href="s-engager.html" class="btn-outline">S'engager bénévolement</a>
+    </div>
+  </section>
+
+  <script src="shared.js"></script>
+  <script>injectNav('quisommes'); injectFooter();</script>
+</body>
+</html>

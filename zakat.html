@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zakat al-maal — A-Sabil</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Montserrat:wght@400;500;600;700&family=Martel+Sans:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="shared.css" />
+  <style>
+    .content-layout { display: grid; grid-template-columns: 1fr 380px; gap: 60px; max-width: 1200px; margin: 0 auto; align-items: start; }
+    .sticky-don { position: sticky; top: 100px; }
+    .zakat-calc { background: #022935; border-radius: 20px; padding: 32px; color: #fff; }
+    .calc-title { font-family: 'Lilita One', cursive; font-size: 22px; margin-bottom: 6px; }
+    .calc-sub { font-size: 13px; color: rgba(255,255,255,0.55); margin-bottom: 24px; }
+    .calc-row { margin-bottom: 18px; }
+    .calc-label { font-size: 12px; font-weight: 700; color: rgba(255,255,255,0.6); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; }
+    .calc-input {
+      width: 100%; padding: 12px 16px; background: rgba(255,255,255,0.08);
+      border: 1.5px solid rgba(87,198,255,0.3); border-radius: 10px;
+      color: #fff; font-size: 16px; font-family: 'Montserrat', sans-serif; font-weight: 700; outline: none;
+    }
+    .calc-input:focus { border-color: #57C6FF; }
+    .calc-result { background: rgba(87,198,255,0.1); border: 1px solid rgba(87,198,255,0.3); border-radius: 14px; padding: 20px 22px; margin-top: 20px; text-align: center; }
+    .calc-result-label { font-size: 12px; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; }
+    .calc-result-amount { font-family: 'Lilita One', cursive; font-size: 48px; color: #57C6FF; line-height: 1; }
+    .beneficiaires-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 12px; margin: 24px 0; }
+    .benef-card { background: #f8fafb; border-radius: 14px; padding: 18px 16px; border: 1px solid #e8ecee; }
+    .benef-icon { font-size: 24px; margin-bottom: 8px; }
+    .benef-title { font-weight: 700; font-size: 14px; color: #022935; margin-bottom: 4px; }
+    .benef-desc { font-size: 12px; color: #5a7a85; line-height: 1.4; }
+    @media(max-width:900px){ .content-layout{grid-template-columns:1fr;} .sticky-don{position:static;} .beneficiaires-grid{grid-template-columns:1fr;} }
+  </style>
+</head>
+<body>
+  <section class="page-hero">
+    <div class="page-hero-bg" style="background:linear-gradient(160deg,#1a0a3d 0%,#4a2a8a 60%,#8a5aff22 100%);"></div>
+    <div class="page-hero-placeholder" style="background:repeating-linear-gradient(135deg,#1a0a3d 0,#1a0a3d 12px,#22104a 12px,#22104a 24px);"></div>
+    <div class="page-hero-overlay"></div>
+    <div class="page-hero-content">
+      <span class="page-hero-eyebrow">Purification du bien</span>
+      <h1 class="page-hero-title">Zakat<br/><span>al-maal</span></h1>
+      <p class="page-hero-sub">Versez votre Zakat annuelle en toute confiance. A-Sabil la distribue directement aux plus démunis selon les règles de la Sunna.</p>
+      <a href="#calcul" class="page-hero-cta" style="background:#8a5aff;color:#fff;">Calculer ma Zakat →</a>
+    </div>
+  </section>
+
+  <div class="stat-strip">
+    <div class="stat-item fade-up"><div class="stat-num">2,5%</div><div class="stat-label">Taux de la Zakat</div></div>
+    <div class="stat-item fade-up"><div class="stat-num">Nisab</div><div class="stat-label">~5 600€ (85g d'or)</div></div>
+    <div class="stat-item fade-up"><div class="stat-num">8</div><div class="stat-label">Catégories de bénéficiaires</div></div>
+    <div class="stat-item fade-up"><div class="stat-num">100%</div><div class="stat-label">Reversée aux bénéficiaires</div></div>
+  </div>
+
+  <section class="section section-white" id="calcul">
+    <div class="content-layout">
+      <div>
+        <div class="fade-up">
+          <span class="section-eyebrow">La Zakat</span>
+          <h2 class="section-title" style="margin-bottom:20px;">Zakat<br/><span>al-maal</span></h2>
+          <div class="prose">
+            <p>La Zakat al-maal est le troisième pilier de l'Islam. Elle consiste à purifier sa richesse en versant <strong>2,5% de son épargne annuelle</strong> aux personnes qui y ont droit.</p>
+            <p>Pour être soumis à la Zakat, votre épargne doit dépasser le <strong>Nisab</strong> (équivalent à 85g d'or, environ 5 600€) et avoir été conservée pendant une année lunaire complète (Hawl).</p>
+            <p>A-Sabil se charge de distribuer votre Zakat directement et intégralement aux bénéficiaires éligibles au Mali.</p>
+          </div>
+        </div>
+
+        <div class="fade-up" style="margin-top:32px;">
+          <h3 style="font-family:'Lilita One',cursive;font-size:22px;color:#022935;margin-bottom:16px;">Les 8 catégories de bénéficiaires</h3>
+          <div class="beneficiaires-grid">
+            <div class="benef-card"><div class="benef-icon">🤲</div><div class="benef-title">Al-Fuqarâ</div><div class="benef-desc">Les pauvres — ceux qui n'ont pas le nécessaire</div></div>
+            <div class="benef-card"><div class="benef-icon">💼</div><div class="benef-title">Al-Masâkîn</div><div class="benef-desc">Les nécessiteux — ceux dans le besoin</div></div>
+            <div class="benef-card"><div class="benef-icon">🔗</div><div class="benef-title">Fi ar-Riqâb</div><div class="benef-desc">Pour l'affranchissement des esclaves et captifs</div></div>
+            <div class="benef-card"><div class="benef-icon">⚖️</div><div class="benef-title">Al-Ghârimûn</div><div class="benef-desc">Les endettés qui ne peuvent rembourser</div></div>
+            <div class="benef-card"><div class="benef-icon">🛤️</div><div class="benef-title">Ibn as-Sabîl</div><div class="benef-desc">Le voyageur en difficulté loin de chez lui</div></div>
+            <div class="benef-card"><div class="benef-icon">🌍</div><div class="benef-title">Fî Sabîl Allah</div><div class="benef-desc">Les actions dans le chemin d'Allah</div></div>
+          </div>
+        </div>
+
+        <div class="quote-block fade-up">
+          <div class="quote-text">"Institue la prière et acquitte la Zakat. Tout bien que vous aurez avancé pour vous-mêmes, vous le retrouverez auprès d'Allah."</div>
+          <div class="quote-source">Sourate Al-Baqara, verset 110</div>
+        </div>
+      </div>
+
+      <div class="sticky-don fade-up" id="calcul-widget">
+        <div class="zakat-calc">
+          <div class="calc-title">🌙 Calculer ma Zakat</div>
+          <div class="calc-sub">Entrez le montant de votre épargne annuelle</div>
+          <div class="calc-row">
+            <div class="calc-label">Mon épargne (€)</div>
+            <input class="calc-input" type="number" id="epargne" placeholder="Ex: 10 000" oninput="calcZakat()" />
+          </div>
+          <div class="calc-result">
+            <div class="calc-result-label">Votre Zakat à verser</div>
+            <div class="calc-result-amount" id="zakatResult">—</div>
+            <div style="font-size:12px;color:rgba(255,255,255,0.4);margin-top:6px;">= 2,5% de votre épargne</div>
+          </div>
+          <div id="nisabWarn" style="display:none;margin-top:12px;background:rgba(234,86,0,0.15);border-radius:10px;padding:12px;font-size:12px;color:#EA5600;text-align:center;">
+            ⚠️ Votre épargne est inférieure au Nisab (~5 600€). La Zakat ne vous est pas obligatoire, mais le don reste encouragé.
+          </div>
+          <button onclick="window.location.href='don.html?projet=zakat'" style="margin-top:20px;width:100%;padding:14px;background:#8a5aff;color:#fff;border:none;border-radius:30px;font-size:15px;font-weight:700;font-family:'Montserrat',sans-serif;cursor:pointer;transition:opacity .2s;" onmouseover="this.style.opacity=0.85" onmouseout="this.style.opacity=1">
+            Verser ma Zakat →
+          </button>
+          <div style="text-align:center;font-size:11px;color:rgba(255,255,255,0.3);margin-top:10px;">🔒 Paiement sécurisé · Distribuée intégralement</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script src="shared.js"></script>
+  <script>
+    injectNav('zakat'); injectFooter();
+    function calcZakat(){
+      const v=parseFloat(document.getElementById('epargne').value)||0;
+      const nisab=5600;
+      if(v>0&&v<nisab){
+        document.getElementById('zakatResult').textContent='—';
+        document.getElementById('nisabWarn').style.display='block';
+      } else if(v>=nisab){
+        document.getElementById('nisabWarn').style.display='none';
+        document.getElementById('zakatResult').textContent=Math.round(v*0.025)+'€';
+      } else {
+        document.getElementById('zakatResult').textContent='—';
+        document.getElementById('nisabWarn').style.display='none';
+      }
+    }
+  </script>
+</body>
+</html>

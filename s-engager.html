@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>S'engager — A-Sabil</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Montserrat:wght@400;500;600;700&family=Martel+Sans:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="shared.css" />
+  <style>
+    .engagements-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; max-width: 1200px; margin: 0 auto; }
+    .engagement-card { background: #fff; border-radius: 22px; padding: 36px 28px; border: 2px solid #e8ecee; transition: all .25s; cursor: pointer; text-align: center; }
+    .engagement-card:hover { border-color: #57C6FF; transform: translateY(-5px); box-shadow: 0 14px 40px rgba(2,41,53,0.1); }
+    .engagement-card.featured { border-color: #57C6FF; background: linear-gradient(135deg,#022935,#0a4460); color: #fff; }
+    .engagement-icon { font-size: 48px; margin-bottom: 16px; }
+    .engagement-title { font-family: 'Lilita One', cursive; font-size: 24px; color: #022935; margin-bottom: 10px; }
+    .engagement-card.featured .engagement-title { color: #fff; }
+    .engagement-desc { font-size: 14px; color: #5a7a85; line-height: 1.6; margin-bottom: 20px; }
+    .engagement-card.featured .engagement-desc { color: rgba(255,255,255,0.65); }
+    .campagne-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; max-width: 1200px; margin: 0 auto; }
+    .campagne-visual { border-radius: 24px; overflow: hidden; aspect-ratio: 4/3; background: repeating-linear-gradient(135deg,#0a3a50 0,#0a3a50 12px,#0d4460 12px,#0d4460 24px); display: flex; align-items: center; justify-content: center; }
+    .campagne-visual span { font-family: monospace; font-size: 12px; color: rgba(87,198,255,0.3); text-align: center; padding: 20px; }
+    .mensuel-steps { display: flex; flex-direction: column; gap: 16px; }
+    .mensuel-step { display: flex; gap: 14px; align-items: flex-start; }
+    .mensuel-step-dot { width: 10px; height: 10px; border-radius: 50%; background: #57C6FF; margin-top: 6px; flex-shrink: 0; }
+    .mensuel-step-text { font-size: 15px; color: rgba(255,255,255,0.8); line-height: 1.5; }
+    .don-mensuel-amounts { display: flex; gap: 10px; flex-wrap: wrap; margin: 20px 0; }
+    .dm-pill { padding: 12px 22px; border-radius: 30px; border: 1.5px solid rgba(87,198,255,0.35); background: transparent; color: #fff; font-weight: 700; font-size: 16px; cursor: pointer; transition: all .2s; font-family: 'Montserrat', sans-serif; }
+    .dm-pill:hover, .dm-pill.active { background: #57C6FF; border-color: #57C6FF; color: #022935; }
+    .benevole-form { background: #fff; border-radius: 24px; padding: 36px 40px; box-shadow: 0 4px 28px rgba(2,41,53,0.08); max-width: 680px; margin: 0 auto; }
+    .form-group { display: flex; flex-direction: column; gap: 6px; margin-bottom: 16px; }
+    .form-label { font-size: 12px; font-weight: 700; color: #022935; }
+    .form-input { padding: 12px 16px; border: 1.5px solid #dde3e6; border-radius: 10px; font-size: 15px; font-family: 'Montserrat', sans-serif; color: #022935; outline: none; transition: border-color .2s; }
+    .form-input:focus { border-color: #57C6FF; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 16px; }
+    .checkbox-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 20px; }
+    .checkbox-item { display: flex; align-items: center; gap: 8px; font-size: 14px; color: #022935; cursor: pointer; }
+    .checkbox-item input { width: 18px; height: 18px; accent-color: #57C6FF; cursor: pointer; }
+    @media(max-width:900px){ .engagements-grid{grid-template-columns:1fr;} .campagne-layout{grid-template-columns:1fr;} .form-row{grid-template-columns:1fr;} .checkbox-grid{grid-template-columns:1fr;} }
+  </style>
+</head>
+<body>
+  <section class="page-hero">
+    <div class="page-hero-bg"></div>
+    <div class="page-hero-placeholder"></div>
+    <div class="page-hero-overlay"></div>
+    <div class="page-hero-content">
+      <span class="page-hero-eyebrow">Agir ensemble</span>
+      <h1 class="page-hero-title">S'engager<br/>avec <span>A-Sabil</span></h1>
+      <p class="page-hero-sub">Donateur, bénévole, ambassadeur — il y a une place pour chacun. Rejoignez-nous dans cette aventure humaine et spirituelle.</p>
+    </div>
+  </section>
+
+  <!-- FAÇONS DE S'ENGAGER -->
+  <section class="section section-light">
+    <div class="section-header fade-up">
+      <span class="section-eyebrow">Comment aider ?</span>
+      <h2 class="section-title">Vos façons de <span>vous engager</span></h2>
+    </div>
+    <div class="engagements-grid">
+      <div class="engagement-card featured fade-up">
+        <div class="engagement-icon">💰</div>
+        <div class="engagement-title">Faire un don</div>
+        <div class="engagement-desc">Donateur unique ou mensuel, chaque contribution finance nos projets sur le terrain.</div>
+        <a href="don.html" class="btn-secondary" style="display:inline-flex;">Faire un don →</a>
+      </div>
+      <div class="engagement-card fade-up">
+        <div class="engagement-icon">🙋</div>
+        <div class="engagement-title">Devenir bénévole</div>
+        <div class="engagement-desc">Rejoignez notre équipe en France ou participez à des missions au Mali selon vos compétences.</div>
+        <a href="#benevole" class="btn-outline" style="display:inline-flex;">Candidater →</a>
+      </div>
+      <div class="engagement-card fade-up">
+        <div class="engagement-icon">📣</div>
+        <div class="engagement-title">Partager notre cause</div>
+        <div class="engagement-desc">Parlez d'A-Sabil autour de vous, partagez nos publications et aidez-nous à grandir.</div>
+        <a href="contact.html" class="btn-outline" style="display:inline-flex;">Nous contacter →</a>
+      </div>
+      <div class="engagement-card fade-up">
+        <div class="engagement-icon">🏢</div>
+        <div class="engagement-title">Partenariat entreprise</div>
+        <div class="engagement-desc">Votre entreprise souhaite s'engager dans la RSE ? Construisons ensemble un projet à impact.</div>
+        <a href="contact.html" class="btn-outline" style="display:inline-flex;">En savoir plus →</a>
+      </div>
+      <div class="engagement-card fade-up">
+        <div class="engagement-icon">🎓</div>
+        <div class="engagement-title">Parrainer l'école</div>
+        <div class="engagement-desc">50€/mois pour financer la scolarité d'un enfant à l'école Al-Kawthar de Bamako.</div>
+        <a href="ecole.html" class="btn-outline" style="display:inline-flex;">Parrainer →</a>
+      </div>
+      <div class="engagement-card fade-up">
+        <div class="engagement-icon">🌍</div>
+        <div class="engagement-title">Mission terrain</div>
+        <div class="engagement-desc">Médecin, ingénieur, enseignant ? Venez participer à une mission au Mali avec notre équipe.</div>
+        <a href="contact.html" class="btn-outline" style="display:inline-flex;">Postuler →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CAMPAGNE RAHMA - DON MENSUEL -->
+  <section class="section section-dark">
+    <div class="campagne-layout">
+      <div class="fade-up">
+        <span class="section-eyebrow blue">Don mensuel</span>
+        <h2 class="section-title white" style="margin-bottom:16px;">Campagne <span>Rahma</span></h2>
+        <div style="font-size:16px;color:rgba(255,255,255,0.7);line-height:1.7;margin-bottom:20px;">
+          Votre don mensuel est un engagement durable qui nous permet d'agir jour après jour dans tous nos projets. Annulable à tout moment.
+        </div>
+        <div class="mensuel-steps">
+          <div class="mensuel-step"><div class="mensuel-step-dot"></div><div class="mensuel-step-text">Eau potable pour des centaines de villageois au Mali</div></div>
+          <div class="mensuel-step"><div class="mensuel-step-dot"></div><div class="mensuel-step-text">Éducation pour les enfants de l'école Al-Kawthar</div></div>
+          <div class="mensuel-step"><div class="mensuel-step-dot"></div><div class="mensuel-step-text">Arbres fruitiers pour nourrir des familles sur le long terme</div></div>
+          <div class="mensuel-step"><div class="mensuel-step-dot"></div><div class="mensuel-step-text">Reçu fiscal annuel · Annulable à tout moment</div></div>
+        </div>
+        <div class="don-mensuel-amounts">
+          <button class="dm-pill" onclick="setMensuel(this,10)">10€/mois</button>
+          <button class="dm-pill active" onclick="setMensuel(this,25)">25€/mois</button>
+          <button class="dm-pill" onclick="setMensuel(this,50)">50€/mois</button>
+          <button class="dm-pill" onclick="setMensuel(this,100)">100€/mois</button>
+        </div>
+        <a href="don.html" class="btn-secondary" style="margin-top:8px;">Je m'engage mensuellement →</a>
+      </div>
+      <div class="campagne-visual fade-up"><span>photo campagne Rahma terrain</span></div>
+    </div>
+  </section>
+
+  <!-- BENEVOLE -->
+  <section class="section section-light" id="benevole">
+    <div class="section-header fade-up">
+      <span class="section-eyebrow">Bénévolat</span>
+      <h2 class="section-title">Rejoindre <span>l'équipe</span></h2>
+      <p class="section-sub">Remplissez ce formulaire et nous vous contacterons pour discuter de votre engagement.</p>
+    </div>
+    <div class="benevole-form fade-up">
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Prénom *</label>
+          <input class="form-input" type="text" placeholder="Ahmed" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Nom *</label>
+          <input class="form-input" type="text" placeholder="Brahim" />
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Email *</label>
+        <input class="form-input" type="email" placeholder="contact@exemple.fr" />
+      </div>
+      <div class="form-group">
+        <label class="form-label">Téléphone</label>
+        <input class="form-input" type="tel" placeholder="+33 6 00 00 00 00" />
+      </div>
+      <div class="form-group">
+        <label class="form-label">Vos compétences / domaines d'intérêt</label>
+        <div class="checkbox-grid">
+          <label class="checkbox-item"><input type="checkbox" /> Communication / réseaux</label>
+          <label class="checkbox-item"><input type="checkbox" /> Médical / santé</label>
+          <label class="checkbox-item"><input type="checkbox" /> Ingénierie / technique</label>
+          <label class="checkbox-item"><input type="checkbox" /> Éducation / enseignement</label>
+          <label class="checkbox-item"><input type="checkbox" /> Collecte de fonds</label>
+          <label class="checkbox-item"><input type="checkbox" /> Mission terrain Mali</label>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Votre message</label>
+        <textarea class="form-input" rows="4" placeholder="Parlez-nous de vous et de votre motivation..."></textarea>
+      </div>
+      <button onclick="this.textContent='✅ Candidature envoyée !';this.style.background='#4caf50';" style="width:100%;padding:15px;background:#022935;color:#fff;border:none;border-radius:30px;font-size:15px;font-weight:700;font-family:'Montserrat',sans-serif;cursor:pointer;transition:all .3s;">
+        Envoyer ma candidature →
+      </button>
+    </div>
+  </section>
+
+  <script src="shared.js"></script>
+  <script>
+    injectNav('engager'); injectFooter();
+    function setMensuel(btn,val){
+      document.querySelectorAll('.dm-pill').forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active');
+    }
+  </script>
+</body>
+</html>

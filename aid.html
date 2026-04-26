@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aïd al-Adha — A-Sabil</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Montserrat:wght@400;500;600;700&family=Martel+Sans:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="shared.css" />
+  <style>
+    /* HERO spécial Aïd */
+    .hero-aid {
+      position: relative; min-height: 100vh;
+      display: flex; align-items: center; overflow: hidden;
+    }
+    .hero-aid-bg {
+      position: absolute; inset: 0;
+      background: linear-gradient(160deg, #022935 0%, #0f3d4a 50%, #86D4FC22 100%);
+    }
+    .hero-aid-pattern {
+      position: absolute; inset: 0; opacity: 0.07;
+      background-image: radial-gradient(circle at 20% 60%, #86D4FC 0%, transparent 50%),
+        radial-gradient(circle at 80% 30%, #EA5600 0%, transparent 40%);
+    }
+    .hero-aid-inner {
+      position: relative; z-index: 2; max-width: 1200px; margin: 0 auto;
+      width: 100%; padding: 100px 48px 80px;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;
+    }
+    .hero-aid-text { }
+    .hero-aid-badge {
+      display: inline-block; background: #EA5600; color: #fff;
+      font-size: 11px; font-weight: 700; letter-spacing: 2px;
+      padding: 5px 14px; border-radius: 20px; margin-bottom: 18px; text-transform: uppercase;
+    }
+    .hero-aid-title {
+      font-family: 'Lilita One', cursive; font-size: clamp(48px, 6vw, 88px);
+      color: #fff; line-height: 1; margin-bottom: 6px;
+    }
+    .hero-aid-subtitle {
+      font-family: 'Lilita One', cursive; font-size: clamp(28px, 3.5vw, 48px);
+      color: #86D4FC; line-height: 1; margin-bottom: 24px;
+    }
+    .hero-aid-desc { color: rgba(255,255,255,0.75); font-size: 16px; line-height: 1.65; margin-bottom: 32px; max-width: 440px; }
+    .hero-aid-cta { display: inline-flex; align-items: center; gap: 8px; background: #86D4FC; color: #022935; border: none; border-radius: 30px; padding: 16px 36px; font-size: 16px; font-weight: 700; font-family: 'Montserrat', sans-serif; cursor: pointer; text-decoration: none; transition: opacity .2s; }
+    .hero-aid-cta:hover { opacity: 0.85; }
+
+    /* OFFRE CARDS */
+    .offre-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .offre-card {
+      background: rgba(255,255,255,0.07); border: 2px solid rgba(134,212,252,0.2);
+      border-radius: 24px; padding: 32px 28px; text-align: center;
+      cursor: pointer; transition: all .25s; position: relative;
+    }
+    .offre-card:hover, .offre-card.selected { border-color: #86D4FC; background: rgba(134,212,252,0.12); transform: translateY(-4px); }
+    .offre-card.selected::after { content: '✓ Sélectionné'; position: absolute; top: 12px; right: 14px; background: #86D4FC; color: #022935; font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 20px; }
+    .offre-animal { font-size: 48px; margin-bottom: 12px; }
+    .offre-type { font-family: 'Lilita One', cursive; font-size: 24px; color: #fff; margin-bottom: 4px; }
+    .offre-price { font-family: 'Lilita One', cursive; font-size: 52px; color: #86D4FC; line-height: 1; }
+    .offre-desc { font-size: 13px; color: rgba(255,255,255,0.6); margin-top: 10px; line-height: 1.5; }
+
+    /* SECTIONS */
+    .content-layout { display: grid; grid-template-columns: 1fr 380px; gap: 60px; max-width: 1200px; margin: 0 auto; align-items: start; }
+    .sticky-don { position: sticky; top: 100px; }
+    .process-steps { display: flex; flex-direction: column; gap: 20px; margin: 24px 0; }
+    .process-step { display: flex; gap: 20px; align-items: flex-start; }
+    .step-num-circle { width: 40px; height: 40px; border-radius: 50%; background: #86D4FC; color: #022935; font-family: 'Lilita One', cursive; font-size: 18px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px; }
+    .step-body { flex: 1; }
+    .step-title { font-weight: 700; font-size: 16px; color: #022935; margin-bottom: 4px; }
+    .step-desc { font-size: 14px; color: #5a7a85; line-height: 1.5; }
+    .photos-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 14px; margin: 24px 0; }
+    .photo-placeholder-aid {
+      aspect-ratio: 4/3; border-radius: 14px;
+      background: repeating-linear-gradient(135deg,#cce8f4 0,#cce8f4 10px,#b8dff0 10px,#b8dff0 20px);
+      display: flex; align-items: center; justify-content: center;
+      font-family: monospace; font-size: 11px; color: rgba(2,41,53,0.35); text-align: center; padding: 10px;
+    }
+    .don-aid-card { background: linear-gradient(135deg,#022935,#0a4460); border-radius: 24px; padding: 36px 32px; color: #fff; }
+    .don-aid-title { font-family: 'Lilita One', cursive; font-size: 26px; margin-bottom: 6px; }
+    .don-aid-sub { font-size: 13px; color: rgba(255,255,255,0.55); margin-bottom: 24px; }
+    .offre-selector { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 20px; }
+    .offre-btn {
+      padding: 16px 12px; border-radius: 14px; border: 1.5px solid rgba(134,212,252,0.3);
+      background: transparent; color: #fff; cursor: pointer; font-family: 'Montserrat',sans-serif;
+      transition: all .2s; text-align: center;
+    }
+    .offre-btn:hover, .offre-btn.active { background: #86D4FC; border-color: #86D4FC; color: #022935; }
+    .offre-btn .ob-animal { font-size: 28px; display: block; margin-bottom: 6px; }
+    .offre-btn .ob-type { font-weight: 700; font-size: 14px; display: block; }
+    .offre-btn .ob-price { font-family: 'Lilita One',cursive; font-size: 22px; color: #86D4FC; display: block; margin-top: 2px; }
+    .offre-btn.active .ob-price { color: #022935; }
+    .qty-row { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
+    .qty-label { font-size: 13px; color: rgba(255,255,255,0.6); flex: 1; }
+    .qty-btn { width: 36px; height: 36px; border-radius: 50%; background: rgba(134,212,252,0.2); border: none; color: #fff; font-size: 20px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background .2s; }
+    .qty-btn:hover { background: #86D4FC; color: #022935; }
+    .qty-val { font-family: 'Lilita One',cursive; font-size: 28px; color: #86D4FC; min-width: 32px; text-align: center; }
+    .total-row { background: rgba(134,212,252,0.1); border-radius: 14px; padding: 16px 18px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; }
+    .total-label { font-size: 13px; color: rgba(255,255,255,0.6); }
+    .total-amount { font-family: 'Lilita One',cursive; font-size: 36px; color: #86D4FC; }
+    .btn-aid-don { width: 100%; padding: 16px; background: #EA5600; color: #fff; border: none; border-radius: 30px; font-size: 16px; font-weight: 700; font-family: 'Montserrat',sans-serif; cursor: pointer; transition: background .2s; }
+    .btn-aid-don:hover { background: #c94d00; }
+
+    @media(max-width:900px){
+      .hero-aid-inner{grid-template-columns:1fr;gap:40px;}
+      .offre-cards{grid-template-columns:1fr;}
+      .content-layout{grid-template-columns:1fr;}
+      .sticky-don{position:static;}
+      .photos-grid{grid-template-columns:1fr;}
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HERO SPÉCIAL AÏD -->
+  <section class="hero-aid">
+    <div class="hero-aid-bg"></div>
+    <div class="hero-aid-pattern"></div>
+    <div class="hero-aid-inner">
+      <div class="hero-aid-text fade-up">
+        <span class="hero-aid-badge">🐑 Sacrifice annuel</span>
+        <div class="hero-aid-title">Aïd</div>
+        <div class="hero-aid-subtitle">Al-Adha 2025</div>
+        <p class="hero-aid-desc">Offrez votre sacrifice à une famille dans le besoin au Mali et au Sénégal. Les bêtes sont sélectionnées selon les critères d'éligibilité de la Sunna et distribuées dans les 3 jours suivant l'Aïd.</p>
+        <a href="#don-section" class="hero-aid-cta">J'offre mon sacrifice ici →</a>
+      </div>
+      <div class="fade-up">
+        <div class="offre-cards">
+          <div class="offre-card selected" onclick="selectOffre(this,'mouton',170)">
+            <div class="offre-animal">🐑</div>
+            <div class="offre-type">Un mouton</div>
+            <div class="offre-price">170€</div>
+            <div class="offre-desc">Sélectionné selon les critères de la Sunna. Distribué à une famille.</div>
+          </div>
+          <div class="offre-card" onclick="selectOffre(this,'boeuf',130)">
+            <div class="offre-animal">🐄</div>
+            <div class="offre-type">Un bœuf</div>
+            <div class="offre-price">130€</div>
+            <div class="offre-desc">Part de bœuf (1/7). Distribué à plusieurs familles.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- OBJECTIF -->
+  <div style="background:#86D4FC;padding:40px 48px;text-align:center;">
+    <div style="max-width:800px;margin:0 auto;">
+      <div style="font-family:'Lilita One',cursive;font-size:clamp(24px,3vw,40px);color:#022935;margin-bottom:8px;">Objectif : 150 moutons pour 150 familles !</div>
+      <div style="font-size:15px;color:rgba(2,41,53,0.75);line-height:1.6;margin-bottom:20px;">Plus que jamais, les populations d'Afrique de l'Ouest font face à de grandes difficultés alimentaires en raison des crises politiques et du changement climatique.</div>
+      <div style="background:rgba(2,41,53,0.1);border-radius:30px;height:14px;overflow:hidden;max-width:600px;margin:0 auto 10px;">
+        <div style="width:47%;height:100%;background:#022935;border-radius:30px;"></div>
+      </div>
+      <div style="font-size:13px;color:#022935;font-weight:700;">47 / 150 sacrifices financés</div>
+    </div>
+  </div>
+
+  <div class="stat-strip">
+    <div class="stat-item fade-up"><div class="stat-num">150</div><div class="stat-label">Objectif 2025</div></div>
+    <div class="stat-item fade-up"><div class="stat-num">170€</div><div class="stat-label">Un mouton complet</div></div>
+    <div class="stat-item fade-up"><div class="stat-num">130€</div><div class="stat-label">Une part de bœuf</div></div>
+    <div class="stat-item fade-up"><div class="stat-num">Mali &amp; Sénégal</div><div class="stat-label">Distribution</div></div>
+  </div>
+
+  <section class="section section-white" id="don-section">
+    <div class="content-layout">
+      <div>
+        <div class="fade-up">
+          <span class="section-eyebrow">Le sacrifice</span>
+          <h2 class="section-title" style="margin-bottom:20px;">Comment ça <span>fonctionne ?</span></h2>
+          <div class="process-steps">
+            <div class="process-step">
+              <div class="step-num-circle">1</div>
+              <div class="step-body"><div class="step-title">Vous choisissez votre sacrifice</div><div class="step-desc">Mouton (170€) ou part de bœuf (130€). Vous pouvez offrir plusieurs sacrifices.</div></div>
+            </div>
+            <div class="process-step">
+              <div class="step-num-circle">2</div>
+              <div class="step-body"><div class="step-title">Sélection de la bête</div><div class="step-desc">Les bêtes sont sélectionnées par nos équipes au Mali selon les critères d'éligibilité de la Sunna.</div></div>
+            </div>
+            <div class="process-step">
+              <div class="step-num-circle">3</div>
+              <div class="step-body"><div class="step-title">Sacrifice le jour de l'Aïd</div><div class="step-desc">Le sacrifice est effectué le jour de l'Aïd al-Adha ou dans les 3 jours suivants.</div></div>
+            </div>
+            <div class="process-step">
+              <div class="step-num-circle">4</div>
+              <div class="step-body"><div class="step-title">Distribution aux familles</div><div class="step-desc">La viande est distribuée à des familles dans le besoin. Photos et compte-rendu envoyés.</div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="quote-block fade-up">
+          <div class="quote-text">"Nulle action n'est meilleure que de sacrifier pour Allah le jour du sacrifice."</div>
+          <div class="quote-source">Hadith du Prophète ﷺ</div>
+        </div>
+
+        <div class="fade-up">
+          <h3 style="font-family:'Lilita One',cursive;font-size:22px;color:#022935;margin-bottom:16px;">Sur le terrain</h3>
+          <div class="photos-grid">
+            <div class="photo-placeholder-aid"><span>photo distribution Aïd Mali</span></div>
+            <div class="photo-placeholder-aid"><span>photo famille bénéficiaire</span></div>
+            <div class="photo-placeholder-aid"><span>photo moutons sélectionnés</span></div>
+            <div class="photo-placeholder-aid"><span>photo équipe terrain Aïd</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- DON WIDGET AÏD -->
+      <div class="sticky-don fade-up">
+        <div class="don-aid-card">
+          <div class="don-aid-title">🐑 Offrir mon sacrifice</div>
+          <div class="don-aid-sub">Choisissez le type et la quantité</div>
+
+          <div class="offre-selector">
+            <button class="offre-btn active" id="btnMouton" onclick="selectType('mouton',170)">
+              <span class="ob-animal">🐑</span>
+              <span class="ob-type">Mouton</span>
+              <span class="ob-price">170€</span>
+            </button>
+            <button class="offre-btn" id="btnBoeuf" onclick="selectType('boeuf',130)">
+              <span class="ob-animal">🐄</span>
+              <span class="ob-type">Part bœuf</span>
+              <span class="ob-price">130€</span>
+            </button>
+          </div>
+
+          <div class="qty-row">
+            <span class="qty-label">Nombre de sacrifices</span>
+            <button class="qty-btn" onclick="changeQty(-1)">−</button>
+            <span class="qty-val" id="qtyVal">1</span>
+            <button class="qty-btn" onclick="changeQty(1)">+</button>
+          </div>
+
+          <div class="total-row">
+            <span class="total-label">Total à verser</span>
+            <span class="total-amount" id="totalAmount">170€</span>
+          </div>
+
+          <button class="btn-aid-don" onclick="window.location.href='don.html?projet=aid&montant='+currentTotal">
+            J'offre mon sacrifice →
+          </button>
+          <div style="margin-top:14px;background:rgba(134,212,252,0.08);border-radius:10px;padding:12px;font-size:12px;color:rgba(255,255,255,0.6);line-height:1.6;">
+            ✓ Bêtes sélectionnées selon la Sunna<br/>
+            ✓ Distribution dans les 3 jours de l'Aïd<br/>
+            ✓ Photos et compte-rendu envoyés<br/>
+            ✓ Reçu fiscal disponible
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script src="shared.js"></script>
+  <script>
+    injectNav('aid'); injectFooter();
+    let currentPrice = 170;
+    let currentQty = 1;
+    let currentTotal = 170;
+
+    function selectOffre(el, type, price) {
+      document.querySelectorAll('.offre-card').forEach(c=>c.classList.remove('selected'));
+      el.classList.add('selected');
+    }
+    function selectType(type, price) {
+      currentPrice = price;
+      document.getElementById('btnMouton').classList.toggle('active', type==='mouton');
+      document.getElementById('btnBoeuf').classList.toggle('active', type==='boeuf');
+      updateTotal();
+    }
+    function changeQty(delta) {
+      currentQty = Math.max(1, currentQty + delta);
+      document.getElementById('qtyVal').textContent = currentQty;
+      updateTotal();
+    }
+    function updateTotal() {
+      currentTotal = currentPrice * currentQty;
+      document.getElementById('totalAmount').textContent = currentTotal + '€';
+    }
+  </script>
+</body>
+</html>
