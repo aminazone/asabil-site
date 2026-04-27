@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Faire un don — A-Sabil</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Montserrat:wght@400;500;600;700&family=Martel+Sans:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="shared.css" />
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+  <style>
+    html { scroll-behavior: smooth; }
+    body { background: #f4f8fa; }
+
+    /* ── PAGE WRAPPER ── */
+    .don-page {
+      min-height: 100vh;
+      padding-top: 80px;
+    }
+
+    /* ── HERO BANDEAU ── */
+    .don-hero {
+      background: linear-gradient(135deg, #022935 0%, #0a4a62 100%);
+      padding: 48px 24px 0;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .don-hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(circle at 80% 50%, rgba(87,198,255,0.12) 0%, transparent 60%);
+    }
+    .don-hero-eyebrow {
+      display: inline-block; background: #EA5600; color: #fff;
+      font-size: 11px; font-weight: 700; letter-spacing: 2px;
+      padding: 4px 14px; border-radius: 20px; margin-bottom: 12px;
+      text-transform: uppercase; position: relative; z-index: 1;
+    }
+    .don-hero-title {
+      font-family: 'Lilita One', cursive;
+      font-size: clamp(32px, 5vw, 56px);
+      color: #fff; line-height: 1.05; margin-bottom: 10px;
+      position: relative; z-index: 1;
+    }
+    .don-hero-title span { color: #57C6FF; }
+    .don-hero-sub {
+      font-size: 15px; color: rgba(255,255,255,0.65);
+      max-width: 480px; margin: 0 auto 32px; line-height: 1.6;
+      position: relative; z-index: 1;
+    }
+
+    /* ── WIDGET FLOTTANT ── */
+    .don-widget-outer {
+      position: relative; z-index: 10;
+      max-width: 860px; margin: 0 auto;
+      padding: 0 16px;
+      transform: translateY(0);
+    }
+    .don-widget {
+      background: #fff;
+      border-radius: 24px;
+      box-shadow: 0 20px 60px rgba(2,41,53,0.18);
+      overflow: hidden;
+    }
+
+    /* ÉTAPES */
+    .steps-bar {
+      display: flex; background: #f0f4f6;
+      border-bottom: 1px solid #e0e8ec;
+    }
+    .step-item {
+      flex: 1; padding: 14px 10px; text-align: center;
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+      font-size: 13px; font-weight: 600; color: #aab8c0;
+      cursor: pointer; transition: all .2s; border-bottom: 3px solid transparent;
+      position: relative;
+    }
+    .step-item.active { color: #022935; border-bottom-color: #57C6FF; background: #fff; }
+    .step-item.done { color: #57C6FF; }
+    .step-num {
+      width: 22px; height: 22px; border-radius: 50%;
+      background: #dde8ec; color: #aab8c0;
+      font-size: 11px; font-weight: 700;
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+      transition: all .2s;
+    }
+    .step-item.active .step-num { background: #57C6FF; color: #022935; }
+    .step-item.done .step-num { background: #022935; color: #fff; }
+
+    /* CONTENU WIDGET */
+    .widget-body { padding: 28px 32px 32px; }
+
+    /* ONGLETS DON TYPE */
+    .don-type-tabs {
+      display: flex; background: #f0f4f6; border-radius: 30px;
+      padding: 4px; margin-bottom: 24px; gap: 0;
+    }
+    .don-type-tab {
+      flex: 1; padding: 11px 0; border-radius: 26px;
+      font-weight: 700; font-size: 14px; cursor: pointer;
+      border: none; background: transparent; color: #022935;
+      font-family: 'Montserrat', sans-serif; transition: all .2s;
+      display: flex; align-items: center; justify-content: center; gap: 6px;
+    }
+    .don-type-tab.active { background: #022935; color: #fff; box-shadow: 0 2px 8px rgba(2,41,53,0.2); }
+    .mensuel-badge {
+      font-size: 10px; background: #57C6FF; color: #022935;
+      padding: 2px 6px; border-radius: 10px; font-weight: 700;
+    }
+
+    /* PROJETS SELECTOR */
+    .projets-label {
+      font-size: 11px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 1.5px; color: #5a7a85; margin-bottom: 10px;
+    }
+    .projets-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px; margin-bottom: 22px;
+    }
+    .projet-btn {
+      display: flex; flex-direction: column; align-items: center;
+      gap: 6px; padding: 12px 8px;
+      border: 2px solid #e0e8ec; border-radius: 14px;
+      background: #fff; cursor: pointer; transition: all .2s;
+      font-family: 'Montserrat', sans-serif;
+    }
+    .projet-btn:hover { border-color: #57C6FF; transform: translateY(-2px); }
+    .projet-btn.active { border-color: #022935; background: #022935; }
+    .projet-btn-icon { font-size: 24px; line-height: 1; }
+    .projet-btn-label {
+      font-size: 11px; font-weight: 700; color: #022935;
+      text-align: center; line-height: 1.2;
+    }
+    .projet-btn.active .projet-btn-label { color: #fff; }
+    .projet-btn-impact {
+      font-size: 10px; color: #EA5600; font-weight: 700;
+      text-align: center; line-height: 1.2;
+    }
+    .projet-btn.active .projet-btn-impact { color: #57C6FF; }
+
+    /* MOUTON AÏD SPÉCIAL */
+    .projet-btn.aid-special {
+      border-color: #EA5600;
+      background: linear-gradient(135deg, #fff5f0, #fff);
+    }
+    .projet-btn.aid-special.active {
+      background: linear-gradient(135deg, #EA5600, #c94d00);
+      border-color: #EA5600;
+    }
+    .projet-btn.aid-special .projet-btn-label { color: #EA5600; }
+    .projet-btn.aid-special.active .projet-btn-label { color: #fff; }
+    .projet-btn.aid-special .projet-btn-impact { color: #c94d00; }
+    .projet-btn.aid-special.active .projet-btn-impact { color: #ffe0cc; }
+
+    /* MONTANTS */
+    .montants-label {
+      font-size: 11px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 1.5px; color: #5a7a85; margin-bottom: 10px;
+    }
+    .montants-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 8px; margin-bottom: 10px;
+    }
+    .montant-btn {
+      padding: 14px 8px; border-radius: 12px;
+      border: 2px solid #e0e8ec; background: #fff;
+      font-weight: 700; font-size: 17px; cursor: pointer;
+      font-family: 'Montserrat', sans-serif; transition: all .2s;
+      color: #022935; text-align: center;
+    }
+    .montant-btn:hover { border-color: #57C6FF; }
+    .montant-btn.active { background: #57C6FF; border-color: #57C6FF; color: #022935; }
+    .montant-btn.libre {
+      font-size: 14px; color: #EA5600; border-color: #EA5600;
+      grid-column: span 2;
+    }
+    .montant-btn.libre.active { background: #EA5600; border-color: #EA5600; color: #fff; }
+
+    /* AÏD SELECTOR SPÉCIAL */
+    .aid-selector {
+      display: none; margin-bottom: 12px;
+    }
+    .aid-selector.show { display: block; }
+    .aid-selector-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .aid-option {
+      padding: 14px; border-radius: 14px; border: 2px solid #e0e8ec;
+      background: #fff; cursor: pointer; transition: all .2s; text-align: center;
+      font-family: 'Montserrat', sans-serif;
+    }
+    .aid-option:hover { border-color: #EA5600; }
+    .aid-option.active { background: #EA5600; border-color: #EA5600; color: #fff; }
+    .aid-option-icon { font-size: 28px; display: block; margin-bottom: 4px; }
+    .aid-option-type { font-weight: 700; font-size: 15px; color: #022935; }
+    .aid-option.active .aid-option-type { color: #fff; }
+    .aid-option-price { font-family: 'Lilita One', cursive; font-size: 24px; color: #EA5600; }
+    .aid-option.active .aid-option-price { color: #ffe0cc; }
+    .aid-qty-row {
+      display: flex; align-items: center; gap: 12px;
+      background: #fff8f5; border-radius: 12px; padding: 12px 16px;
+      margin-top: 10px; border: 1px solid #ffd0b8;
+    }
+    .aid-qty-label { flex: 1; font-size: 14px; font-weight: 600; color: #022935; }
+    .aid-qty-btn {
+      width: 34px; height: 34px; border-radius: 50%;
+      background: #EA5600; border: none; color: #fff;
+      font-size: 18px; cursor: pointer; display: flex;
+      align-items: center; justify-content: center; transition: opacity .2s;
+    }
+    .aid-qty-btn:hover { opacity: 0.8; }
+    .aid-qty-val { font-family: 'Lilita One', cursive; font-size: 24px; color: #EA5600; min-width: 28px; text-align: center; }
+
+    /* CHAMP LIBRE */
+    .montant-libre-input {
+      display: none;
+      flex-direction: row; align-items: center;
+      border: 2px solid #57C6FF; border-radius: 12px;
+      overflow: hidden; margin-bottom: 14px;
+    }
+    .montant-libre-input.show { display: flex; }
+    .montant-libre-currency {
+      padding: 12px 16px; background: #f0f4f6;
+      font-weight: 700; color: #022935; font-size: 18px; flex-shrink: 0;
+    }
+    .montant-libre-input input {
+      flex: 1; border: none; outline: none; padding: 12px 14px;
+      font-size: 18px; font-weight: 700; font-family: 'Montserrat', sans-serif;
+      color: #022935;
+    }
+
+    /* IMPACT HINT */
+    .impact-hint {
+      font-size: 13px; color: #EA5600; font-weight: 700;
+      min-height: 20px; margin-bottom: 16px;
+      display: flex; align-items: center; gap: 6px;
+    }
+    .impact-hint span { animation: fadeIn .3s ease; }
+    @keyframes fadeIn { from{opacity:0;transform:translateY(4px)} to{opacity:1;transform:translateY(0)} }
+
+    /* CTA BOUTON */
+    .btn-don-go {
+      width: 100%; padding: 18px; background: #022935; color: #fff;
+      border: none; border-radius: 30px; font-size: 17px; font-weight: 700;
+      font-family: 'Montserrat', sans-serif; cursor: pointer;
+      transition: background .2s, transform .1s;
+      display: flex; align-items: center; justify-content: center; gap: 10px;
+      letter-spacing: 0.3px;
+    }
+    .btn-don-go:hover { background: #0a3a4d; transform: translateY(-1px); }
+    .btn-don-go.orange { background: #EA5600; }
+    .btn-don-go.orange:hover { background: #c94d00; }
+
+    .don-reassure {
+      text-align: center; font-size: 12px; color: #aab8c0;
+      margin-top: 12px; display: flex; align-items: center; justify-content: center; gap: 6px;
+      flex-wrap: wrap;
+    }
+    .don-reassure span { display: flex; align-items: center; gap: 4px; }
+
+    /* ── ÉTAPE 2 : PAIEMENT ── */
+    .payment-step { display: none; }
+    .payment-step.show { display: block; }
+
+    .recap-pill {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: #f0f8f4; border: 1px solid #57C6FF44;
+      border-radius: 30px; padding: 8px 18px; margin-bottom: 24px;
+      font-size: 14px; font-weight: 700; color: #022935;
+      cursor: pointer; transition: background .2s;
+    }
+    .recap-pill:hover { background: #e0f4ec; }
+    .recap-pill-amount { color: #57C6FF; font-family: 'Lilita One', cursive; font-size: 18px; }
+
+    /* MÉTHODES PAIEMENT */
+    .pay-methods-title {
+      font-size: 11px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 1.5px; color: #5a7a85; margin-bottom: 12px;
+    }
+    .pay-quick {
+      display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; margin-bottom: 20px;
+    }
+    .pay-quick-btn {
+      padding: 14px 10px; border-radius: 14px; border: 2px solid #e0e8ec;
+      background: #fff; cursor: pointer; transition: all .2s;
+      display: flex; flex-direction: column; align-items: center; gap: 5px;
+      font-family: 'Montserrat', sans-serif;
+    }
+    .pay-quick-btn:hover { border-color: #022935; transform: translateY(-2px); box-shadow: 0 4px 16px rgba(2,41,53,0.08); }
+    .pay-quick-btn.selected { border-color: #022935; background: #022935; }
+    .pay-quick-icon { font-size: 22px; }
+    .pay-quick-label { font-size: 12px; font-weight: 700; color: #022935; }
+    .pay-quick-btn.selected .pay-quick-label { color: #fff; }
+    .pay-quick-sub { font-size: 10px; color: #aab8c0; text-align: center; line-height: 1.3; }
+    .pay-quick-btn.selected .pay-quick-sub { color: rgba(255,255,255,0.5); }
+
+    .pay-separator {
+      display: flex; align-items: center; gap: 12px; margin-bottom: 16px;
+    }
+    .pay-separator div { flex: 1; height: 1px; background: #e0e8ec; }
+    .pay-separator span { font-size: 12px; color: #aab8c0; font-weight: 600; white-space: nowrap; }
+
+    .pay-other {
+      display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; margin-bottom: 24px;
+    }
+    .pay-other-btn {
+      padding: 12px 8px; border-radius: 12px; border: 2px solid #e0e8ec;
+      background: #fff; cursor: pointer; transition: all .2s;
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+      font-family: 'Montserrat', sans-serif;
+    }
+    .pay-other-btn:hover { border-color: #57C6FF; }
+    .pay-other-btn.selected { border-color: #022935; background: #022935; }
+    .pay-other-icon { font-size: 16px; }
+    .pay-other-label { font-size: 12px; font-weight: 700; color: #022935; }
+    .pay-other-btn.selected .pay-other-label { color: #fff; }
+
+    /* FORMULAIRE */
+    .form-section { margin-top: 20px; }
+    .form-section-title {
+      font-size: 11px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 1.5px; color: #5a7a85; margin-bottom: 12px;
+      padding-bottom: 8px; border-bottom: 1px solid #e8ecee;
+    }
+    .form-row-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px; }
+    .form-group { display: flex; flex-direction: column; gap: 5px; margin-bottom: 12px; }
+    .form-label { font-size: 12px; font-weight: 700; color: #022935; }
+    .form-input {
+      padding: 12px 14px; border: 1.5px solid #dde3e6; border-radius: 10px;
+      font-size: 15px; font-family: 'Montserrat', sans-serif; color: #022935;
+      outline: none; transition: border-color .2s; background: #fff;
+    }
+    .form-input:focus { border-color: #57C6FF; }
+
+    /* CB FIELDS */
+    .cb-fields { margin-top: 4px; }
+    .cb-field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+    /* INFOS REDIRECT */
+    .redirect-info {
+      background: #f8fbfc; border: 1px solid #57C6FF33; border-radius: 12px;
+      padding: 14px 18px; margin-top: 4px; font-size: 13px; color: #5a7a85; line-height: 1.6;
+    }
+
+    /* VIREMENT */
+    .virement-info {
+      background: #f0f4f6; border-radius: 12px; padding: 14px 18px;
+      font-size: 13px; line-height: 1.9; color: #022935; margin-top: 4px;
+    }
+    .virement-info strong { color: #EA5600; }
+
+    /* FISCAL */
+    .fiscal-box {
+      background: #f0f9f4; border: 1px solid #57C6FF33; border-radius: 12px;
+      padding: 12px 16px; font-size: 13px; color: #022935; line-height: 1.6;
+      margin-bottom: 16px; margin-top: 16px;
+    }
+    .fiscal-box strong { color: #EA5600; }
+
+    /* BOUTON SUBMIT */
+    .btn-submit {
+      width: 100%; padding: 17px; background: #EA5600; color: #fff;
+      border: none; border-radius: 30px; font-size: 16px; font-weight: 700;
+      font-family: 'Montserrat', sans-serif; cursor: pointer;
+      transition: background .2s, transform .1s;
+    }
+    .btn-submit:hover { background: #c94d00; transform: translateY(-1px); }
+
+    /* BACK LINK */
+    .back-link {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 13px; font-weight: 700; color: #5a7a85;
+      cursor: pointer; margin-bottom: 20px; background: none; border: none;
+      font-family: 'Montserrat', sans-serif; transition: color .2s; padding: 0;
+    }
+    .back-link:hover { color: #022935; }
+
+    /* ── BANDEAU BAS ── */
+    .don-trust-bar {
+      background: #fff; border-top: 1px solid #e8ecee;
+      padding: 16px 24px;
+      display: flex; align-items: center; justify-content: center;
+      gap: 24px; flex-wrap: wrap;
+    }
+    .trust-item { display: flex; align-items: center; gap: 6px; font-size: 12px; color: #aab8c0; font-weight: 600; }
+
+    /* ── SECTION REMERCIEMENTS ── */
+    .don-footer-section {
+      max-width: 860px; margin: 32px auto; padding: 0 16px;
+    }
+    .temoignages-mini {
+      display: grid; grid-template-columns: repeat(3,1fr); gap: 16px;
+    }
+    .temoignage-mini {
+      background: #fff; border-radius: 16px; padding: 20px;
+      box-shadow: 0 2px 12px rgba(2,41,53,0.06);
+    }
+    .temoignage-quote-icon { font-size: 24px; color: #57C6FF; margin-bottom: 8px; font-family: Georgia, serif; }
+    .temoignage-text { font-size: 13px; color: #022935; line-height: 1.6; font-style: italic; margin-bottom: 10px; }
+    .temoignage-author { font-size: 12px; font-weight: 700; color: #EA5600; }
+    .temoignage-lieu { font-size: 11px; color: #aab8c0; }
+
+    /* RESPONSIVE */
+    @media (max-width: 700px) {
+      .widget-body { padding: 20px 16px 24px; }
+      .projets-grid { grid-template-columns: repeat(4,1fr); gap: 6px; }
+      .projet-btn { padding: 10px 4px; }
+      .projet-btn-icon { font-size: 20px; }
+      .projet-btn-label { font-size: 10px; }
+      .projet-btn-impact { font-size: 9px; }
+      .montants-grid { grid-template-columns: repeat(3,1fr); }
+      .montant-btn { font-size: 15px; padding: 12px 4px; }
+      .montant-btn.libre { grid-column: span 3; }
+      .pay-quick { grid-template-columns: repeat(3,1fr); }
+      .pay-other { grid-template-columns: repeat(3,1fr); }
+      .form-row-grid { grid-template-columns: 1fr; }
+      .cb-field-row { grid-template-columns: 1fr; }
+      .temoignages-mini { grid-template-columns: 1fr; }
+      .steps-bar { overflow-x: auto; }
+      .step-item { min-width: 100px; font-size: 12px; }
+    }
+    @media (max-width: 480px) {
+      .projets-grid { grid-template-columns: repeat(4,1fr); }
+      .don-hero { padding: 40px 16px 0; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="don-page">
+  <!-- NAV injectée par shared.js -->
+
+  <!-- HERO -->
+  <div class="don-hero">
+    <div class="don-hero-eyebrow">Association humanitaire</div>
+    <h1 class="don-hero-title">Faites un don,<br/><span>changez une vie</span></h1>
+    <p class="don-hero-sub">Soutenez nos actions au Mali — eau, éducation, alimentation. Simple, rapide, sécurisé.</p>
+  </div>
+
+  <!-- WIDGET -->
+  <div class="don-widget-outer" style="margin-top:-1px;">
+    <div class="don-widget" id="donWidget"></div>
+    <div class="don-trust-bar">
+      <span class="trust-item">🔒 Paiement sécurisé SSL</span>
+      <span class="trust-item">📄 Reçu fiscal envoyé par email</span>
+      <span class="trust-item">🏦 Stripe · PayPal · HelloAsso</span>
+      <span class="trust-item">❌ Annulable à tout moment</span>
+    </div>
+  </div>
+
+  <!-- TEMOIGNAGES -->
+  <div class="don-footer-section">
+    <div style="text-align:center;margin-bottom:20px;">
+      <span style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:#EA5600;">Ils ont bénéficié de vos dons</span>
+    </div>
+    <div class="temoignages-mini">
+      <div class="temoignage-mini">
+        <div class="temoignage-quote-icon">"</div>
+        <div class="temoignage-text">Avant ce forage, nos femmes marchaient 8 km chaque jour pour trouver de l'eau.</div>
+        <div class="temoignage-author">Chef du village</div>
+        <div class="temoignage-lieu">Mukadjanbougou, Ségou — Mali</div>
+      </div>
+      <div class="temoignage-mini">
+        <div class="temoignage-quote-icon">"</div>
+        <div class="temoignage-text">Grâce au parrainage d'A-Sabil, ma fille a pu passer son brevet. Elle veut devenir infirmière.</div>
+        <div class="temoignage-author">Fatou, mère de Mariama</div>
+        <div class="temoignage-lieu">Bamako — Mali</div>
+      </div>
+      <div class="temoignage-mini">
+        <div class="temoignage-quote-icon">"</div>
+        <div class="temoignage-text">Les manguiers plantés il y a 3 ans nourrissent maintenant 12 familles du quartier.</div>
+        <div class="temoignage-author">Moussa, agriculteur</div>
+        <div class="temoignage-lieu">Kayes — Mali</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/babel">
+const { useState, useEffect, useRef } = React;
+
+const PROJECTS = [
+  { id:'forage',     icon:'💧', label:'Forage',      sublabel:'au Mali',       impact:'1 500€ = 1 forage',    color:'#57C6FF' },
+  { id:'plantation', icon:'🌳', label:'Plantation',  sublabel:'d\'arbres',     impact:'25€ = 1 arbre',        color:'#4caf50' },
+  { id:'ecole',      icon:'📚', label:'École',       sublabel:'Al-Kawthar',    impact:'50€/mois',             color:'#EA5600' },
+  { id:'zakat',      icon:'🌙', label:'Zakat',       sublabel:'al-maal',       impact:'2,5% épargne',         color:'#8a5aff' },
+  { id:'aid',        icon:'🐑', label:'Aïd',         sublabel:'al-Adha',       impact:'170€ = 1 mouton',      color:'#EA5600', special:true },
+  { id:'omra',       icon:'🕌', label:'Omra',        sublabel:'nécessiteux',   impact:'voyage La Mecque',     color:'#2a6aad' },
+  { id:'libre',      icon:'🤲', label:'Don libre',   sublabel:'A-Sabil',       impact:'impact général',       color:'#022935' },
+];
+
+const AMOUNTS_UNIQUE  = [10, 25, 50, 100, 200, 400];
+const AMOUNTS_MENSUEL = [5, 10, 25, 50, 100, 200];
+
+const IMPACT = {
+  forage:     {10:null,25:null,50:'3% d\'un forage',100:'7% d\'un forage',200:'13% d\'un forage',400:'27%',1500:'1 forage complet !'},
+  plantation: {5:null,10:'10 semences',25:'1 arbre fruitier planté',50:'2 arbres',100:'4 arbres',200:'8 arbres',400:'16 arbres'},
+  ecole:      {5:null,10:null,25:'50% d\'un mois',50:'1 mois de scolarité',100:'2 mois',200:'4 mois',400:'8 mois'},
+  zakat:      {},
+  aid:        {130:'1 part de bœuf',170:'1 mouton complet',260:'2 parts',340:'2 moutons',510:'3 moutons'},
+  omra:       {50:null,100:'Contribution précieuse',200:'Contribution importante',500:'Contribution majeure'},
+  libre:      {},
+};
+
+function getImpact(project, amount) {
+  const map = IMPACT[project];
+  if (!map) return null;
+  const keys = Object.keys(map).map(Number).sort((a,b)=>a-b);
+  let best = null;
+  for (const k of keys) { if (amount >= k && map[k]) best = map[k]; }
+  return best;
+}
+
+/* ── ÉTAPE 1 : CHOIX MONTANT ── */
+function Step1({ state, setState, onNext }) {
+  const amounts = state.type === 'unique' ? AMOUNTS_UNIQUE : AMOUNTS_MENSUEL;
+  const isAid = state.project === 'aid';
+  const currentAmount = state.custom ? (parseInt(state.customVal)||0) : (isAid ? state.aidTotal : state.amount);
+  const hint = getImpact(state.project, currentAmount);
+
+  function selectProject(id) {
+    setState(s => {
+      const next = { ...s, project: id, custom: false };
+      if (id === 'aid') {
+        next.amount = s.aidPrice;
+        next.aidTotal = s.aidPrice * s.aidQty;
+      }
+      return next;
+    });
+  }
+
+  function setAmount(a) {
+    setState(s => ({ ...s, amount: a, custom: false }));
+  }
+
+  function setAidType(price) {
+    setState(s => ({ ...s, aidPrice: price, aidTotal: price * s.aidQty }));
+  }
+
+  function changeQty(delta) {
+    setState(s => {
+      const qty = Math.max(1, s.aidQty + delta);
+      return { ...s, aidQty: qty, aidTotal: s.aidPrice * qty };
+    });
+  }
+
+  const displayAmount = isAid ? state.aidTotal : (state.custom ? (parseInt(state.customVal)||0) : state.amount);
+
+  return (
+    <div className="widget-body">
+      {/* TYPE DON */}
+      <div className="don-type-tabs">
+        <button className={`don-type-tab ${state.type==='unique'?'active':''}`} onClick={()=>setState(s=>({...s,type:'unique'}))}>
+          Don unique
+        </button>
+        <button className={`don-type-tab ${state.type==='mensuel'?'active':''}`} onClick={()=>setState(s=>({...s,type:'mensuel'}))}>
+          Don mensuel
+          <span className="mensuel-badge">Récurrent</span>
+        </button>
+      </div>
+
+      {/* CHOIX PROJET */}
+      <div className="projets-label">Choisissez un projet</div>
+      <div className="projets-grid">
+        {PROJECTS.map(p => (
+          <button
+            key={p.id}
+            className={`projet-btn${p.special?' aid-special':''}${state.project===p.id?' active':''}`}
+            onClick={()=>selectProject(p.id)}
+          >
+            <span className="projet-btn-icon">{p.icon}</span>
+            <span className="projet-btn-label">{p.label}<br/>{p.sublabel}</span>
+            <span className="projet-btn-impact">{p.impact}</span>
+          </button>
+        ))}
+      </div>
+
+      {/* AÏD SPÉCIAL */}
+      {isAid && (
+        <div className="aid-selector show">
+          <div className="aid-selector-grid">
+            {[{price:170,icon:'🐑',label:'Mouton',sub:'Complet'},{price:130,icon:'🐄',label:'Part bœuf',sub:'1/7 d\'un bœuf'}].map(opt => (
+              <div
+                key={opt.price}
+                className={`aid-option${state.aidPrice===opt.price?' active':''}`}
+                onClick={()=>setAidType(opt.price)}
+              >
+                <span className="aid-option-icon">{opt.icon}</span>
+                <div className="aid-option-type">{opt.label}</div>
+                <div className="aid-option-price">{opt.price}€</div>
+                <div style={{fontSize:10,color:state.aidPrice===opt.price?'rgba(255,255,255,0.6)':'#aab8c0',marginTop:2}}>{opt.sub}</div>
+              </div>
+            ))}
+          </div>
+          <div className="aid-qty-row">
+            <span className="aid-qty-label">Nombre de sacrifices</span>
+            <button className="aid-qty-btn" onClick={()=>changeQty(-1)}>−</button>
+            <span className="aid-qty-val">{state.aidQty}</span>
+            <button className="aid-qty-btn" onClick={()=>changeQty(1)}>+</button>
+          </div>
+        </div>
+      )}
+
+      {/* MONTANTS */}
+      {!isAid && (
+        <>
+          <div className="montants-label">Montant</div>
+          <div className="montants-grid">
+            {amounts.map(a => (
+              <button
+                key={a}
+                className={`montant-btn${!state.custom&&state.amount===a?' active':''}`}
+                onClick={()=>setAmount(a)}
+              >
+                {a}€
+              </button>
+            ))}
+            <button
+              className={`montant-btn libre${state.custom?' active':''}`}
+              onClick={()=>setState(s=>({...s,custom:true}))}
+            >
+              Montant libre
+            </button>
+          </div>
+          {state.custom && (
+            <div className="montant-libre-input show">
+              <span className="montant-libre-currency">€</span>
+              <input
+                type="number" min="1" placeholder="Votre montant"
+                value={state.customVal}
+                onChange={e=>setState(s=>({...s,customVal:e.target.value}))}
+                autoFocus
+              />
+            </div>
+          )}
+        </>
+      )}
+
+      {/* IMPACT */}
+      <div className="impact-hint">
+        {hint ? <span>✦ {hint}</span> : <span style={{color:'#aab8c0'}}>Votre don fait la différence</span>}
+      </div>
+
+      {/* CTA */}
+      <button
+        className={`btn-don-go${isAid?' orange':''}`}
+        onClick={onNext}
+        disabled={isAid ? state.aidTotal<=0 : (!state.custom&&!state.amount)||(state.custom&&!parseInt(state.customVal))}
+      >
+        <span>
+          Je donne {displayAmount > 0 ? `${displayAmount}€` : ''}{state.type==='mensuel'?' /mois':''}
+        </span>
+        <span>→</span>
+      </button>
+
+      <div className="don-reassure">
+        <span>🔒 Paiement 100% sécurisé</span>
+        <span style={{color:'#dde3e6'}}>·</span>
+        <span>📄 Reçu fiscal par email</span>
+        {state.type==='mensuel' && <><span style={{color:'#dde3e6'}}>·</span><span>❌ Annulable à tout moment</span></>}
+      </div>
+    </div>
+  );
+}
+
+/* ── ÉTAPE 2 : PAIEMENT ── */
+function Step2({ state, setState, onBack }) {
+  const [payMethod, setPayMethod] = useState(null);
+
+  const isAid = state.project === 'aid';
+  const amount = isAid ? state.aidTotal : (state.custom ? (parseInt(state.customVal)||0) : state.amount);
+  const projectLabel = PROJECTS.find(p=>p.id===state.project)?.label || '—';
+  const isQuick = ['apple','google','paypal'].includes(payMethod);
+  const needsForm = ['cb','virement','helloasso'].includes(payMethod);
+
+  const [form, setForm] = useState({prenom:'',nom:'',email:'',adresse:'',cp:'',ville:''});
+
+  function setF(k, v) { setForm(f=>({...f,[k]:v})); }
+
+  return (
+    <div className="widget-body payment-step show">
+      {/* RETOUR + RÉCAP */}
+      <button className="back-link" onClick={onBack}>← Modifier mon don</button>
+      <div>
+        <span className="recap-pill" onClick={onBack}>
+          <span>{PROJECTS.find(p=>p.id===state.project)?.icon} {projectLabel}</span>
+          <span>·</span>
+          <span className="recap-pill-amount">{amount}€</span>
+          <span style={{color:'#aab8c0'}}>{state.type==='mensuel'?'/mois':''}</span>
+          <span style={{fontSize:11,color:'#aab8c0'}}>✎</span>
+        </span>
+      </div>
+
+      {/* PAIEMENT RAPIDE */}
+      <div className="pay-methods-title">Paiement rapide</div>
+      <div className="pay-quick">
+        {[
+          {id:'apple', icon:'', label:'Apple Pay', sub:'Face ID · Touch ID'},
+          {id:'google',icon:'', label:'Google Pay', sub:'Paiement Google'},
+          {id:'paypal',icon:'🅿',label:'PayPal',    sub:'Compte PayPal'},
+        ].map(m => (
+          <div
+            key={m.id}
+            className={`pay-quick-btn${payMethod===m.id?' selected':''}`}
+            onClick={()=>setPayMethod(m.id)}
+          >
+            <span className="pay-quick-icon">
+              {m.id==='apple' && (
+                <svg width="22" height="22" viewBox="0 0 24 24" fill={payMethod===m.id?'#fff':'#022935'}><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+              )}
+              {m.id==='google' && (
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill={payMethod===m.id?'#fff':'#4285F4'}/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill={payMethod===m.id?'#fff':'#34A853'}/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill={payMethod===m.id?'#fff':'#FBBC05'}/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill={payMethod===m.id?'#fff':'#EA4335'}/></svg>
+              )}
+              {m.icon}
+            </span>
+            <span className="pay-quick-label">{m.label}</span>
+            <span className="pay-quick-sub">{m.sub}</span>
+          </div>
+        ))}
+      </div>
+
+      <div className="pay-separator"><div></div><span>ou payer autrement</span><div></div></div>
+
+      <div className="pay-other">
+        {[
+          {id:'cb',        icon:'💳', label:'Carte bancaire'},
+          {id:'helloasso', icon:'🌐', label:'HelloAsso'},
+          {id:'virement',  icon:'🏦', label:'Virement'},
+        ].map(m => (
+          <div
+            key={m.id}
+            className={`pay-other-btn${payMethod===m.id?' selected':''}`}
+            onClick={()=>setPayMethod(m.id)}
+          >
+            <span className="pay-other-icon">{m.icon}</span>
+            <span className="pay-other-label">{m.label}</span>
+          </div>
+        ))}
+      </div>
+
+      {/* CONTENU SELON MÉTHODE */}
+      {isQuick && (
+        <div>
+          <div className="redirect-info">
+            {payMethod==='apple' && '🍎 Vous serez invité à confirmer avec Face ID ou Touch ID.'}
+            {payMethod==='google' && '🔵 Vous serez redirigé vers Google Pay pour finaliser en sécurité.'}
+            {payMethod==='paypal' && '🅿️ Vous serez redirigé vers PayPal pour vous connecter et confirmer.'}
+          </div>
+          <div className="fiscal-box">
+            📄 Un <strong>reçu fiscal</strong> vous sera envoyé par email après confirmation de votre don.
+          </div>
+          <button className="btn-submit" onClick={()=>{window.location.href='merci.html';}}>
+            Continuer avec {{apple:'Apple Pay',google:'Google Pay',paypal:'PayPal'}[payMethod]} →
+          </button>
+        </div>
+      )}
+
+      {needsForm && (
+        <div className="form-section">
+          <div className="form-section-title">Vos coordonnées</div>
+          <div className="form-row-grid">
+            <div className="form-group">
+              <label className="form-label">Prénom *</label>
+              <input className="form-input" type="text" placeholder="Ahmed" value={form.prenom} onChange={e=>setF('prenom',e.target.value)} />
+            </div>
+            <div className="form-group">
+              <label className="form-label">Nom *</label>
+              <input className="form-input" type="text" placeholder="Brahim" value={form.nom} onChange={e=>setF('nom',e.target.value)} />
+            </div>
+          </div>
+          <div className="form-group">
+            <label className="form-label">Email *</label>
+            <input className="form-input" type="email" placeholder="contact@exemple.fr" value={form.email} onChange={e=>setF('email',e.target.value)} />
+          </div>
+          <div className="form-group">
+            <label className="form-label">Adresse *</label>
+            <input className="form-input" type="text" placeholder="12 rue de la Paix" value={form.adresse} onChange={e=>setF('adresse',e.target.value)} />
+          </div>
+          <div className="form-row-grid">
+            <div className="form-group">
+              <label className="form-label">Code postal *</label>
+              <input className="form-input" type="text" placeholder="75001" value={form.cp} onChange={e=>setF('cp',e.target.value)} />
+            </div>
+            <div className="form-group">
+              <label className="form-label">Ville *</label>
+              <input className="form-input" type="text" placeholder="Paris" value={form.ville} onChange={e=>setF('ville',e.target.value)} />
+            </div>
+          </div>
+
+          {payMethod === 'cb' && (
+            <div className="cb-fields">
+              <div className="form-section-title" style={{marginTop:8}}>Carte bancaire</div>
+              <div className="form-group">
+                <label className="form-label">Numéro de carte</label>
+                <input className="form-input" type="text" placeholder="4242 4242 4242 4242" maxLength={19} />
+              </div>
+              <div className="cb-field-row">
+                <div className="form-group">
+                  <label className="form-label">Expiration</label>
+                  <input className="form-input" type="text" placeholder="MM / AA" maxLength={7} />
+                </div>
+                <div className="form-group">
+                  <label className="form-label">CVC</label>
+                  <input className="form-input" type="text" placeholder="123" maxLength={4} />
+                </div>
+              </div>
+            </div>
+          )}
+
+          {payMethod === 'virement' && (
+            <div className="virement-info">
+              <strong>IBAN :</strong> FR76 3000 4008 0300 0100 0125 X22<br/>
+              <strong>BIC :</strong> BNPAFRPPXXX<br/>
+              <strong>Libellé :</strong> Don A-Sabil — {form.prenom||'Prénom'} {form.nom||'Nom'}
+            </div>
+          )}
+
+          {payMethod === 'helloasso' && (
+            <div className="redirect-info">🌐 Vous serez redirigé vers HelloAsso pour finaliser votre paiement en toute sécurité.</div>
+          )}
+
+          <div className="fiscal-box">
+            📄 Un <strong>reçu fiscal</strong> vous sera envoyé par email. Votre don ouvre droit à une réduction d'impôt.
+          </div>
+
+          <button className="btn-submit" onClick={()=>{window.location.href='merci.html';}}>
+            Confirmer mon don de {amount}€ →
+          </button>
+        </div>
+      )}
+
+      {!payMethod && (
+        <div style={{textAlign:'center',padding:'12px 0',color:'#aab8c0',fontSize:13}}>
+          Sélectionnez un mode de paiement ci-dessus
+        </div>
+      )}
+    </div>
+  );
+}
+
+/* ── APP PRINCIPALE ── */
+function DonApp() {
+  const [step, setStep] = useState(1);
+  const [state, setState] = useState({
+    type: 'unique',
+    project: 'forage',
+    amount: 50,
+    custom: false,
+    customVal: '',
+    aidPrice: 170,
+    aidQty: 1,
+    aidTotal: 170,
+  });
+
+  function goNext() {
+    setStep(2);
+    setTimeout(() => {
+      const el = document.getElementById('donWidget');
+      if (el) window.scrollTo({ top: el.offsetTop - 90, behavior: 'smooth' });
+    }, 50);
+  }
+
+  return (
+    <>
+      {/* BARRE ÉTAPES */}
+      <div className="steps-bar">
+        <div className={`step-item${step===1?' active':''}${step>1?' done':''}`} onClick={()=>step>1&&setStep(1)}>
+          <div className="step-num">{step>1?'✓':'1'}</div>
+          <span>Mon don</span>
+        </div>
+        <div className={`step-item${step===2?' active':''}`}>
+          <div className="step-num">2</div>
+          <span>Paiement</span>
+        </div>
+      </div>
+
+      {step === 1 && <Step1 state={state} setState={setState} onNext={goNext} />}
+      {step === 2 && <Step2 state={state} setState={setState} onBack={()=>setStep(1)} />}
+    </>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('donWidget')).render(<DonApp />);
+</script>
+
+<script src="shared.js"></script>
+<script>injectNav('don'); injectFooter();</script>
+
+<template id="__bundler_thumbnail">
+  <svg viewBox="0 0 120 80" xmlns="http://www.w3.org/2000/svg">
+    <rect width="120" height="80" fill="#022935"/>
+    <rect x="20" y="20" width="80" height="45" rx="8" fill="#fff"/>
+    <rect x="30" y="30" width="60" height="8" rx="4" fill="#57C6FF"/>
+    <rect x="30" y="44" width="25" height="8" rx="4" fill="#e0e8ec"/>
+    <rect x="60" y="44" width="25" height="8" rx="4" fill="#e0e8ec"/>
+    <rect x="30" y="56" width="55" height="6" rx="3" fill="#022935"/>
+  </svg>
+</template>
+</body>
+</html>
